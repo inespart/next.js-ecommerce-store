@@ -1,11 +1,13 @@
-import { css } from '@emotion/react';
-
-const greenBackground = css`
-  margin-left: 30px;
-  color: white;
-  background-color: green;
-`;
+// import { css } from '@emotion/react';
+// import Link from 'next/link';
+import Header from '../components/Header';
+import Hero from '../components/Hero';
 
 export default function Home() {
-  return <div css={greenBackground}>Hello my friends!</div>;
+  return (
+    <div>
+      <Header />
+      <Hero />
+    </div>
+  );
 }
