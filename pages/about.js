@@ -7,7 +7,7 @@ export default function About() {
       <Head>
         <title>About</title>
       </Head>
-      About page
+      <h1>About page</h1>
     </Layout>
   );
 }

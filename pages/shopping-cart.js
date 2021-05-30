@@ -7,7 +7,7 @@ export default function ShoppingCart() {
       <Head>
         <title>Shopping Cart</title>
       </Head>
-      Shopping Cart Page
+      <h1>Shopping Cart Page</h1>
     </Layout>
   );
 }

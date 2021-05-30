@@ -6,6 +6,7 @@ const footerStyles = css`
   padding: 7px;
   text-align: center;
   font-size: ${smallText};
+  margin-top: 15px;
 `;
 
 export default function Footer() {

@@ -10,6 +10,7 @@ const heroStyle = css`
   background-attachment: fixed;
   height: 100vh;
   position: relative;
+  margin: 0 0;
 `;
 
 const heroHeadersContainer = css`
