@@ -1,11 +1,17 @@
 import { css, Global } from '@emotion/react';
+import Head from 'next/head';
 
+// Color Palette
 export const darkGrey = '#001c00';
 export const primaryColor = '#b7860b';
 
+// Text sizes
+export const normalText = '16px';
+export const smallText = '13px';
+
 export default function MyApp({ Component, pageProps }) {
   return (
-    <span>
+    <>
       <Global
         styles={css`
           *,
@@ -16,7 +22,7 @@ export default function MyApp({ Component, pageProps }) {
           body {
             margin: 0;
             font-family: 'Raleway', sans-serif;
-            font-size: 16px;
+            font-size: ${normalText};
             color: ${darkGrey};
           }
           h1 {
@@ -25,7 +31,10 @@ export default function MyApp({ Component, pageProps }) {
           }
         `}
       />
+      <Head>
+        <link icon="favicon" href="favicon.ico" />
+      </Head>
       <Component {...pageProps} />
-    </span>
+    </>
   );
 }

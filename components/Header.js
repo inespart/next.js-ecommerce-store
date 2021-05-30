@@ -7,6 +7,10 @@ const headerStyles = css`
   padding: 30px 150px;
   background-color: white;
   font-weight: 300;
+  /* position: fixed;
+  top: 0;
+  z-index: 1000;
+  width: 100%; */
 `;
 
 const logoContainer = css`
@@ -63,7 +67,7 @@ export default function Header() {
         <Link href="/about">
           <a>About</a>
         </Link>
-        <Link href="/">
+        <Link href="/shopping-cart">
           <a>
             <img src="/shopping_cart.png" alt="Shopping Cart" />
           </a>

@@ -1,13 +1,14 @@
-// import { css } from '@emotion/react';
-// import Link from 'next/link';
-import Header from '../components/Header';
+import Head from 'next/head';
 import Hero from '../components/Hero';
+import Layout from '../components/Layout';
 
 export default function Home() {
   return (
-    <div>
-      <Header />
+    <Layout>
+      <Head>
+        <title>Home</title>
+      </Head>
       <Hero />
-    </div>
+    </Layout>
   );
 }

@@ -1,13 +1,13 @@
 import Head from 'next/head';
 import Layout from '../components/Layout';
 
-export default function About() {
+export default function ShoppingCart() {
   return (
     <Layout>
       <Head>
-        <title>About</title>
+        <title>Shopping Cart</title>
       </Head>
-      About page
+      Shopping Cart Page
     </Layout>
   );
 }
