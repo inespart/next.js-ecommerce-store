@@ -9,6 +9,7 @@ const heroStyle = css`
   background-position: center;
   background-attachment: fixed;
   height: 100vh;
+  width: 100%;
   position: relative;
 `;
 
