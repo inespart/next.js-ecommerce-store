@@ -3,7 +3,10 @@ import Footer from './Footer';
 import Header from './Header';
 
 const containerStyles = css`
-  margin: 0 150px;
+  /* padding: 0 150px; */
+  /* maybe delete again */
+  position: relative;
+  /* min-height: 100vh; */
 `;
 
 export default function Layout(props) {

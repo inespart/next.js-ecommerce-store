@@ -1,14 +1,25 @@
 import { css } from '@emotion/react';
-import { smallText } from '../pages/_app';
+import { lightGrey, smallText } from '../pages/_app';
+
+// const footerContainer = css`
+//   position: relative;
+//   min-height: 100vh;
+// `;
 
 const footerStyles = css`
-  background-color: #f3f4f6;
+  background-color: ${lightGrey};
   padding: 7px;
   text-align: center;
   font-size: ${smallText};
-  margin-top: 15px;
+  /* position: sticky; */
+  /* bottom: 0; */
+  width: 100%;
 `;
 
 export default function Footer() {
-  return <footer css={footerStyles}>&copy; Ines Part | 2021</footer>;
+  return (
+    <div>
+      <footer css={footerStyles}>&copy; Ines Part | 2021</footer>
+    </div>
+  );
 }

@@ -1,3 +1,4 @@
+import { css } from '@emotion/react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '../../components/Layout';
@@ -9,6 +10,10 @@ const products = [
   { id: 3, productName: 'Well done', price: '4,90' },
 ];
 
+const containerStyle = css`
+  padding: 30px 150px;
+`;
+
 export default function Products() {
   return (
     <Layout>
@@ -16,8 +21,8 @@ export default function Products() {
         <title>Products</title>
       </Head>
 
-      <div>
-        <h1>Products</h1>
+      <h1>Products</h1>
+      <div css={containerStyle}>
         {products.map((product) => {
           return (
             <div key={`product-${product.id}`}>

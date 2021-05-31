@@ -10,7 +10,6 @@ const heroStyle = css`
   background-attachment: fixed;
   height: 100vh;
   position: relative;
-  margin: 0 0;
 `;
 
 const heroHeadersContainer = css`
@@ -34,6 +33,7 @@ const heroHeading = css`
   background-color: rgba(255, 255, 255, 0.9);
 
   h1 {
+    margin: 0 0;
     line-height: 78px;
   }
 `;

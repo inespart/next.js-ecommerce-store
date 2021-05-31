@@ -1,5 +1,7 @@
+import { css } from '@emotion/react';
 import Head from 'next/head';
 import Layout from '../components/Layout';
+import { lightGrey } from './_app';
 
 export default function About() {
   return (
