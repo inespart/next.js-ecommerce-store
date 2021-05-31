@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+import Link from 'next/link';
 
 // import { darkGrey } from '../pages/_app';
 
@@ -47,6 +48,11 @@ export default function Hero() {
         <div css={heroHeading}>
           <h1>Unique Greeting Cards for Your Special Occasion</h1>
         </div>
+        <Link href="products">
+          <a>
+            <button className="button-default">Shop Cards</button>
+          </a>
+        </Link>
       </div>
     </div>
   );
