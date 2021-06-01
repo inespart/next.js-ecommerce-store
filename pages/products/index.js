@@ -2,12 +2,13 @@ import { css } from '@emotion/react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '../../components/Layout';
+import { addItemByProductId } from '../../util/cookies';
 import { darkGrey, smallText } from '../_app';
 
 // Array of products was copy pasted to database.js
 
 const containerStyle = css`
-  padding: 30px 150px;
+  padding: 32px 128px;
   width: 100vw;
   display: flex;
   flex-flow: row wrap;
@@ -16,8 +17,8 @@ const containerStyle = css`
 `;
 
 const productThumbStyle = css`
-  width: 450px;
-  height: 500px;
+  width: 300px;
+  height: 350px;
   margin: 10px;
   font-weight: 300;
 
@@ -25,17 +26,17 @@ const productThumbStyle = css`
     width: 100%;
     height: auto;
     box-shadow: 3px 3px 5px 6px #ccc;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
   }
 
   h4 {
-    margin-top: 10px;
-    margin-bottom: 5px;
+    margin-top: 12px;
+    margin-bottom: 4px;
     font-weight: 400;
   }
 
   .price {
-    margin-bottom: 15px;
+    margin-bottom: 16px;
     font-size: ${smallText};
   }
 
@@ -72,7 +73,11 @@ export default function Products(props) {
         {props.products.map((product) => {
           return (
             <div key={`product-${product.id}`} css={productThumbStyle}>
-              <img src={product.src} alt={product.productName} />
+              <Link href={`products/${product.id}`}>
+                <a>
+                  <img src={product.src} alt={product.productName} />
+                </a>
+              </Link>
               <br />
 
               <span>
@@ -85,7 +90,15 @@ export default function Products(props) {
                     </Link>{' '}
                   </div>
                   <div css={buttonContainer}>
-                    <button className="button-small">+ Add to cart</button>
+                    <button
+                      className="button-small"
+                      onClick={() => {
+                        // using the js-cookie library to set and get cookies
+                        addItemByProductId(product.id);
+                      }}
+                    >
+                      + Add to cart
+                    </button>
                   </div>
                 </div>
               </span>
@@ -103,6 +116,7 @@ export async function getServerSideProps() {
   const { products } = await import('../../util/database');
   // This console.log will only show up in Node.js
   console.log('products', products);
+
   // These props will show up in line 13 only on this page
   return {
     props: {

@@ -1,11 +1,17 @@
 import { css } from '@emotion/react';
 import Head from 'next/head';
-// import { useRouter } from 'next/router';
 import Layout from '../../components/Layout';
+import {
+  addItemByProductId,
+  getQuantityCookieValue,
+  parseCookieValue,
+} from '../../util/cookies';
 import { largeText } from '../_app';
 
+// import { useRouter } from 'next/router';
+
 const productContainer = css`
-  padding: 120px 150px;
+  padding: 128px 128px;
   display: flex;
   background: radial-gradient(#f3f4f6, #fff);
 `;
@@ -35,15 +41,18 @@ const descriptionContainer = css`
   h2 {
     text-align: center;
     text-transform: uppercase;
-    letter-spacing: 3px;
+    letter-spacing: 4px;
   }
 
   span:first-of-type {
-    margin-top: 35px;
+    margin-top: 32px;
   }
 `;
 
 export default function SingleProduct(props) {
+  console.log('---props---', props);
+  // console.log('context', props.quantity);
+
   // const router = useRouter();
   // const { productId } = router.query;
   return (
@@ -61,7 +70,20 @@ export default function SingleProduct(props) {
           <div>EUR {props.product.price}</div>
           <span>Handmade</span>
           <span>Unique</span>
-          <button className="button-default">Add to cart</button>
+          <button
+            className="button-default"
+            onClick={() => {
+              // using the js-cookie library to set and get cookies
+              addItemByProductId(props.product.id);
+            }}
+          >
+            Add to cart
+          </button>
+          {
+            // Karl removed getQuantityCookieValue() and replaced it with props.quantity (maybe because we used cookies as props below?)
+            props.quantity.find((product) => product.id === props.product.id)
+              ?.quantity
+          }
         </div>
       </div>
     </Layout>
@@ -72,13 +94,16 @@ export default function SingleProduct(props) {
 export async function getServerSideProps(context) {
   // productId comes from the file name [productId].js
   const productId = context.query.productId;
-  console.log('productId', productId);
+  console.log('---productId---', productId);
+  console.log('---cookies---', context.req.cookies);
   const { products } = await import('../../util/database');
   const product = products.find((p) => p.id === productId);
 
   return {
     props: {
       product: product,
+      // Passing a cookie value as a prop
+      quantity: parseCookieValue(context.req.cookies.quantity) || [],
     },
   };
 }

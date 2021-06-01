@@ -3,13 +3,14 @@ import Head from 'next/head';
 
 // Color Palette
 export const darkGrey = '#001c00';
-export const primaryColor = '#b7860b';
 export const lightGrey = '#f3f4f6';
+export const primaryColor = '#b7860b';
+export const primaryColorLight = '#cf980c';
 
 // Text sizes
 export const normalText = '16px';
-export const smallText = '13px';
-export const largeText = '19px';
+export const smallText = '12px';
+export const largeText = '24px';
 
 export default function MyApp({ Component, pageProps }) {
   return (
@@ -33,11 +34,11 @@ export default function MyApp({ Component, pageProps }) {
             font-weight: 500;
           }
           h1 {
-            margin: 10px 150px;
+            margin: 12px 128px;
             font-size: 3rem;
           }
           h2 {
-            margin: 10px 150px;
+            margin: 12px 128px;
             font-size: 2rem;
           }
           h3 {
@@ -48,27 +49,37 @@ export default function MyApp({ Component, pageProps }) {
           }
 
           .button-default {
-            margin-top: 25px;
-            padding: 15px 25px;
+            margin-top: 24px;
+            padding: 16px 24px;
             background-color: ${primaryColor};
             border: none;
-            border-radius: 3px;
+            border-radius: 4px;
             text-transform: uppercase;
-            letter-spacing: 7px;
+            letter-spacing: 8px;
             cursor: pointer;
             color: white;
+
+            :hover {
+              background-color: ${primaryColorLight};
+            }
           }
 
           .button-small {
             /* margin-top: 25px; */
             padding: 8px 12px;
-            background-color: ${primaryColor};
-            border: none;
-            border-radius: 3px;
+            background-color: white;
+            border: 1px solid ${primaryColor};
+            border-radius: 4px;
             text-transform: uppercase;
             letter-spacing: 1.5px;
             cursor: pointer;
-            color: white;
+            color: ${darkGrey};
+
+            :hover {
+              background-color: ${primaryColor};
+              border: 1px solid ${primaryColor};
+              color: white;
+            }
           }
         `}
       />

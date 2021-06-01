@@ -4,7 +4,7 @@ import { primaryColor } from '../pages/_app';
 
 const headerStyles = css`
   display: flex;
-  padding: 30px 150px;
+  padding: 32px 128px;
   background-color: white;
   font-weight: 300;
   /* position: fixed;
@@ -38,7 +38,7 @@ const navBarContainer = css`
     color: #001c00;
 
     :hover {
-      font-weight: 500;
+      font-weight: 400;
     }
   }
 

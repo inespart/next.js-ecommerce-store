@@ -23,20 +23,21 @@ const heroHeadersContainer = css`
 
 const heroSubheading = css`
   text-transform: uppercase;
-  letter-spacing: 7px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-bottom: 10px;
+  letter-spacing: 8px;
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-bottom: 12px;
 `;
 
 const heroHeading = css`
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 24px;
+  padding-right: 24px;
   background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 4px;
 
   h1 {
     margin: 0 0;
-    line-height: 78px;
+    line-height: 96px;
   }
 `;
 
