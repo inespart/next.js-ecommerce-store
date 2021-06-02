@@ -52,9 +52,9 @@ const descriptionContainer = css`
 export default function SingleProduct(props) {
   console.log('---props---', props);
   // console.log('context', props.quantity);
-
   // const router = useRouter();
   // const { productId } = router.query;
+
   return (
     <Layout>
       <Head>
@@ -93,6 +93,7 @@ export default function SingleProduct(props) {
 // Create connection to database
 export async function getServerSideProps(context) {
   // productId comes from the file name [productId].js
+  console.log(context.query);
   const productId = context.query.productId;
   console.log('---productId---', productId);
   console.log('---cookies---', context.req.cookies);
