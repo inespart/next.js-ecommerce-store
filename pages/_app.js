@@ -1,5 +1,7 @@
 import { css, Global } from '@emotion/react';
 import Head from 'next/head';
+import { useEffect, useState } from 'react';
+import { getShoppingCartCookieValue } from '../util/cookies';
 
 // Color Palette
 export const darkGrey = '#001c00';
@@ -13,6 +15,14 @@ export const smallText = '12px';
 export const largeText = '24px';
 
 export default function MyApp({ Component, pageProps }) {
+  // make state variables globally accessible
+  const [shoppingCart, setShoppingCart] = useState([]);
+
+  // Updating the state variable after the page loads, so that we don't run into server-side-rendering inconsistencies
+  useEffect(() => {
+    setShoppingCart(getShoppingCartCookieValue());
+  }, []);
+
   return (
     <>
       <Global
@@ -86,7 +96,12 @@ export default function MyApp({ Component, pageProps }) {
       <Head>
         <link icon="favicon" href="favicon.ico" />
       </Head>
-      <Component {...pageProps} />
+      {/* Pass props so they appear in every single page #1 */}
+      <Component
+        shoppingCart={shoppingCart}
+        setShoppingCart={setShoppingCart}
+        {...pageProps}
+      />
     </>
   );
 }

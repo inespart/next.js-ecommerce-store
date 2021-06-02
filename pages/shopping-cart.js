@@ -1,9 +1,12 @@
 import Head from 'next/head';
 import Layout from '../components/Layout';
 
-export default function ShoppingCart() {
+export default function ShoppingCart(props) {
   return (
-    <Layout>
+    <Layout
+      shoppingCart={props.shoppingCart}
+      setShoppingCart={props.setShoppingCart}
+    >
       <Head>
         <title>Shopping Cart</title>
       </Head>

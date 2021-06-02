@@ -1,8 +1,6 @@
 import { css } from '@emotion/react';
 import Link from 'next/link';
 
-// import { darkGrey } from '../pages/_app';
-
 const heroStyle = css`
   background-image: url('/heroimage.jpg');
   background-size: cover;

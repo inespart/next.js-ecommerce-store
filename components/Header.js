@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import Link from 'next/link';
-import { primaryColor } from '../pages/_app';
+import { primaryColor, smallText } from '../pages/_app';
 
 const headerStyles = css`
   display: flex;
@@ -45,14 +45,37 @@ const navBarContainer = css`
   a + a {
     margin-left: 40px;
   }
+`;
+
+const shoppingCartContainer = css`
+  display: flex;
+  align-items: center;
 
   img {
-    width: 30px;
+    width: 32px;
     height: auto;
+  }
+
+  div {
+    display: flex;
+    margin-left: 4px;
+    text-align: center;
+  }
+
+  .quantityCounter {
+    background-color: white;
+    /* color: ${primaryColor}; */
+    font-size: ${smallText};
+    padding: 4px;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    display: inline-block;
   }
 `;
 
-export default function Header() {
+export default function Header(props) {
   return (
     <header css={headerStyles}>
       <div css={logoContainer}>
@@ -72,7 +95,15 @@ export default function Header() {
         </Link>
         <Link href="/shopping-cart">
           <a>
-            <img src="/shopping_cart.png" alt="Shopping Cart" />
+            <div css={shoppingCartContainer}>
+              <img src="/shopping_cart.png" alt="Shopping Cart" />
+              <div className="quantityCounter">
+                {/* adding.props #4 */}
+                {props.shoppingCart
+                  .map((p) => p.quantity)
+                  .reduce((total, currentValue) => total + currentValue, 0)}
+              </div>
+            </div>
           </a>
         </Link>
       </div>

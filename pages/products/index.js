@@ -63,7 +63,10 @@ const buttonContainer = css`
 export default function Products(props) {
   console.log('props', props);
   return (
-    <Layout>
+    <Layout
+      shoppingCart={props.shoppingCart}
+      setShoppingCart={props.setShoppingCart}
+    >
       <Head>
         <title>Products</title>
       </Head>
@@ -94,7 +97,7 @@ export default function Products(props) {
                       className="button-small"
                       onClick={() => {
                         // using the js-cookie library to set and get cookies
-                        addItemByProductId(product.id);
+                        props.setShoppingCart(addItemByProductId(product.id));
                       }}
                     >
                       + Add to cart

@@ -1,11 +1,13 @@
-import { css } from '@emotion/react';
 import Head from 'next/head';
 import Layout from '../components/Layout';
-import { lightGrey } from './_app';
 
-export default function About() {
+export default function About(props) {
+  console.log('props in about page', props);
   return (
-    <Layout>
+    <Layout
+      shoppingCart={props.shoppingCart}
+      setShoppingCart={props.setShoppingCart}
+    >
       <Head>
         <title>About</title>
       </Head>

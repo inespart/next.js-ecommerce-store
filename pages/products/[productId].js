@@ -1,11 +1,7 @@
 import { css } from '@emotion/react';
 import Head from 'next/head';
 import Layout from '../../components/Layout';
-import {
-  addItemByProductId,
-  getQuantityCookieValue,
-  parseCookieValue,
-} from '../../util/cookies';
+import { addItemByProductId, parseCookieValue } from '../../util/cookies';
 import { largeText } from '../_app';
 
 // import { useRouter } from 'next/router';
@@ -50,13 +46,17 @@ const descriptionContainer = css`
 `;
 
 export default function SingleProduct(props) {
-  console.log('---props---', props);
+  // console.log('---props---', props);
   // console.log('context', props.quantity);
   // const router = useRouter();
   // const { productId } = router.query;
 
   return (
-    <Layout>
+    // Pass props #2
+    <Layout
+      shoppingCart={props.shoppingCart}
+      setShoppingCart={props.setShoppingCart}
+    >
       <Head>
         <title>{props.product.productName}</title>
       </Head>
@@ -74,15 +74,17 @@ export default function SingleProduct(props) {
             className="button-default"
             onClick={() => {
               // using the js-cookie library to set and get cookies
-              addItemByProductId(props.product.id);
+              // use useState to update quantity on frontend
+              props.setShoppingCart(addItemByProductId(props.product.id));
             }}
           >
             Add to cart
           </button>
           {
             // Karl removed getQuantityCookieValue() and replaced it with props.quantity (maybe because we used cookies as props below?)
-            props.quantity.find((product) => product.id === props.product.id)
-              ?.quantity
+            props.shoppingCart.find(
+              (product) => product.id === props.product.id,
+            )?.quantity
           }
         </div>
       </div>
