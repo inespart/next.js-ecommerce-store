@@ -2,17 +2,12 @@ import { css, Global } from '@emotion/react';
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import { getShoppingCartCookieValue } from '../util/cookies';
-
-// Color Palette
-export const darkGrey = '#001c00';
-export const lightGrey = '#f3f4f6';
-export const primaryColor = '#b7860b';
-export const primaryColorLight = '#cf980c';
-
-// Text sizes
-export const normalText = '16px';
-export const smallText = '12px';
-export const largeText = '24px';
+import {
+  darkGrey,
+  normalText,
+  primaryColor,
+  primaryColorLight,
+} from '../util/sharedStyles';
 
 export default function MyApp({ Component, pageProps }) {
   // make state variables globally accessible

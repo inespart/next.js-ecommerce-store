@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { lightGrey, smallText } from '../pages/_app';
+import { lightGrey, smallText } from '../util/sharedStyles';
 
 // const footerContainer = css`
 //   position: relative;

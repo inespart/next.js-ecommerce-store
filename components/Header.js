@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import Link from 'next/link';
-import { primaryColor, smallText } from '../pages/_app';
+import { primaryColor, smallText } from '../util/sharedStyles';
 
 const headerStyles = css`
   display: flex;
