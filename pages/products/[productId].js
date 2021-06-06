@@ -100,10 +100,10 @@ export default function SingleProduct(props) {
 // Create connection to database
 export async function getServerSideProps(context) {
   // productId comes from the file name [productId].js
-  console.log(context.query);
+  // console.log(context.query);
   const productId = context.query.productId;
-  console.log('---productId---', productId);
-  console.log('---cookies---', context.req.cookies);
+  // console.log('---productId---', productId);
+  // console.log('---cookies---', context.req.cookies);
   const { products } = await import('../../util/database');
   const product = products.find((p) => p.id === productId);
 

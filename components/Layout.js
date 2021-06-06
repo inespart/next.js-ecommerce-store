@@ -10,7 +10,7 @@ const containerStyles = css`
 `;
 
 export default function Layout(props) {
-  console.log('props in layout', props);
+  // console.log('props in layout', props);
   return (
     <>
       {/* Passing props #3 */}

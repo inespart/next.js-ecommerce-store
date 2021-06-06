@@ -122,7 +122,7 @@ export async function getServerSideProps() {
   // This console.log will only show up in Node.js
   console.log('products', products);
 
-  // These props will show up in line 13 only on this page
+  // These props will show up as props to the function Products(props) only on this page
   return {
     props: {
       products: products,
