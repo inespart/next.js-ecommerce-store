@@ -118,7 +118,9 @@ export default function Products(props) {
 // This code will only run on the server
 export async function getServerSideProps() {
   // Allows us to import inside of a function
-  const { products } = await import('../../util/database');
+  // changed products for getProducts - first PostgreSQL lecture
+  const { getProducts } = await import('../../util/database');
+  const products = await getProducts();
   // This console.log will only show up in Node.js
   console.log('products', products);
 

@@ -86,7 +86,6 @@ export default function SingleProduct(props) {
             Add to cart
           </button>
           {
-            // Karl removed getQuantityCookieValue() and replaced it with props.quantity (maybe because we used cookies as props below?)
             props.shoppingCart.find(
               (product) => product.id === props.product.id,
             )?.quantity
@@ -104,8 +103,14 @@ export async function getServerSideProps(context) {
   const productId = context.query.productId;
   // console.log('---productId---', productId);
   // console.log('---cookies---', context.req.cookies);
-  const { products } = await import('../../util/database');
-  const product = products.find((p) => p.id === productId);
+
+  // changed products for getProductById - first PostgreSQL lecture
+  const { getProductById } = await import('../../util/database');
+
+  // // Now we don't need to .find in JS anymore - SQL does it
+  // const product = products.find((p) => p.id === productId);
+
+  const product = await getProductById(productId);
 
   return {
     props: {

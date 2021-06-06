@@ -28,6 +28,10 @@ const productContainer = css`
     height: auto;
     margin-right: 64px;
   }
+
+  button {
+    margin: 0 8px;
+  }
 `;
 
 const totalSumContainer = css`
@@ -47,14 +51,14 @@ export default function ShoppingCart(props) {
   );
   console.log('---productsInShoppingCart---', productsInShoppingCart);
 
-  // retrieve array of quantities of products inside shopping cart
-  const quantityOfProductsInShoppingCart = props.shoppingCart.map(
-    (p) => p.quantity,
-  );
-  console.log(
-    '---quantityOfProductsInShoppingCart---',
-    quantityOfProductsInShoppingCart,
-  );
+  // // retrieve array of quantities of products inside shopping cart
+  // const quantityOfProductsInShoppingCart = props.shoppingCart.map(
+  //   (p) => p.quantity,
+  // );
+  // console.log(
+  //   '---quantityOfProductsInShoppingCart---',
+  //   quantityOfProductsInShoppingCart,
+  // );
 
   return (
     <Layout
@@ -78,11 +82,12 @@ export default function ShoppingCart(props) {
                   <h4>{p.productName}</h4>
                   <p>EUR {p.price}</p>
                   <p>
-                    Quantity:{' '}
+                    Quantity: <button className="button-small">-</button>
                     {
                       props.shoppingCart.find((pro) => pro.id === p.id)
                         ?.quantity
-                    }
+                    }{' '}
+                    <button className="button-small">+</button>
                   </p>
                 </div>
               </div>
@@ -90,7 +95,14 @@ export default function ShoppingCart(props) {
           })}
         </div>
         <div css={totalSumContainer}>
-          <h3>Total Sum:</h3>
+          <h3>
+            Total Sum (
+            {props.shoppingCart
+              .map((p) => p.quantity)
+              .reduce((total, currentValue) => total + currentValue, 0)}{' '}
+            items):
+          </h3>
+          <div>EUR {}</div>
         </div>
       </div>
     </Layout>
@@ -98,7 +110,8 @@ export default function ShoppingCart(props) {
 }
 
 export async function getServerSideProps() {
-  const { products } = await import('../util/database');
+  // changed products for getProducts after PostgreSQL lecture
+  const { getProducts } = await import('../util/database');
 
   return {
     props: {
