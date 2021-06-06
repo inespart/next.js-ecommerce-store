@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '../../components/Layout';
 import { addItemByProductId } from '../../util/cookies';
-import { darkGrey, smallText } from '../_app';
+import { primaryColor, smallText } from '../../util/sharedStyles';
 
 // Array of products was copy pasted to database.js
 
@@ -18,14 +18,15 @@ const containerStyle = css`
 
 const productThumbStyle = css`
   width: 300px;
-  height: 350px;
+  height: 400px;
   margin: 10px;
   font-weight: 300;
 
   img {
     width: 100%;
     height: auto;
-    box-shadow: 3px 3px 5px 6px #ccc;
+    filter: drop-shadow(2px 4px 8px #585858);
+
     margin-bottom: 12px;
   }
 
@@ -41,7 +42,8 @@ const productThumbStyle = css`
   }
 
   a {
-    color: ${darkGrey};
+    color: ${primaryColor};
+    text-decoration: none;
 
     :hover {
       font-weight: 400;

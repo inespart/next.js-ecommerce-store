@@ -64,7 +64,6 @@ const shoppingCartContainer = css`
 
   .quantityCounter {
     background-color: white;
-    /* color: ${primaryColor}; */
     font-size: ${smallText};
     padding: 4px;
     border-radius: 50%;

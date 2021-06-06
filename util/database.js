@@ -3,13 +3,13 @@ export const products = [
     id: '1',
     productName: 'Happy birthday 30',
     price: '5,90',
-    src: '/Happy 30.jpeg',
+    src: '/happy_30_transparent.png',
   },
   {
     id: '2',
     productName: 'Merry Christmas',
     price: '4,90',
-    src: '/Merry Christmas.jpeg',
+    src: '/merry_christmas_transparent.png',
   },
   {
     id: '3',
@@ -21,6 +21,6 @@ export const products = [
     id: '4',
     productName: 'Congratulations',
     price: '4,90',
-    src: '/coming-soon.jpg',
+    src: '/congratulations_transparent.png',
   },
 ];

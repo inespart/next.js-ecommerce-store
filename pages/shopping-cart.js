@@ -11,6 +11,7 @@ export default function ShoppingCart(props) {
         <title>Shopping Cart</title>
       </Head>
       <h1>Shopping Cart Page</h1>
+      {/* <div>{props.shoppingCart.map((p) => p.quantity)}</div> */}
     </Layout>
   );
 }

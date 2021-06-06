@@ -9,6 +9,8 @@ import {
   primaryColorLight,
 } from '../util/sharedStyles';
 
+// require('dotenv-safe').config();
+
 export default function MyApp({ Component, pageProps }) {
   // make state variables globally accessible
   const [shoppingCart, setShoppingCart] = useState([]);

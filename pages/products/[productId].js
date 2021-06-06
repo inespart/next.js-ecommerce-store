@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 import Head from 'next/head';
+import ButtonBack from '../../components/ButtonBack';
 import Layout from '../../components/Layout';
 import { addItemByProductId, parseCookieValue } from '../../util/cookies';
 import { largeText } from '../_app';
@@ -7,9 +8,11 @@ import { largeText } from '../_app';
 // import { useRouter } from 'next/router';
 
 const productContainer = css`
-  padding: 128px 128px;
+  padding-left: 128px;
+  padding-right: 128px;
+  padding-top: 64px;
+  padding-bottom: 96px;
   display: flex;
-  background: radial-gradient(#f3f4f6, #fff);
 `;
 
 const imageContainer = css`
@@ -19,7 +22,7 @@ const imageContainer = css`
   img {
     width: 100%;
     height: auto;
-    box-shadow: 3px 3px 5px 6px #ccc;
+    filter: drop-shadow(2px 4px 8px #585858);
   }
 `;
 
@@ -60,7 +63,9 @@ export default function SingleProduct(props) {
       <Head>
         <title>{props.product.productName}</title>
       </Head>
+      <ButtonBack />
       {/* <h1>{props.product.productName}</h1> */}
+
       <div css={productContainer}>
         <div css={imageContainer}>
           <img src={props.product.src} alt={props.product.productName} />
