@@ -51,15 +51,6 @@ export default function ShoppingCart(props) {
   );
   console.log('---productsInShoppingCart---', productsInShoppingCart);
 
-  // // retrieve array of quantities of products inside shopping cart
-  // const quantityOfProductsInShoppingCart = props.shoppingCart.map(
-  //   (p) => p.quantity,
-  // );
-  // console.log(
-  //   '---quantityOfProductsInShoppingCart---',
-  //   quantityOfProductsInShoppingCart,
-  // );
-
   return (
     <Layout
       shoppingCart={props.shoppingCart}
@@ -112,6 +103,7 @@ export default function ShoppingCart(props) {
 export async function getServerSideProps() {
   // changed products for getProducts after PostgreSQL lecture
   const { getProducts } = await import('../util/database');
+  const products = await getProducts();
 
   return {
     props: {
