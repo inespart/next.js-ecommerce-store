@@ -26,7 +26,6 @@ const productThumbStyle = css`
     width: 100%;
     height: auto;
     filter: drop-shadow(2px 4px 8px #585858);
-
     margin-bottom: 12px;
   }
 

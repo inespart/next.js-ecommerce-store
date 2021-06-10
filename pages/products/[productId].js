@@ -1,8 +1,15 @@
 import { css } from '@emotion/react';
 import Head from 'next/head';
+import { RiDeleteBin6Line } from 'react-icons/ri';
 import ButtonBack from '../../components/ButtonBack';
 import Layout from '../../components/Layout';
-import { addItemByProductId, parseCookieValue } from '../../util/cookies';
+import QuantityButtons from '../../components/QuantityButtons';
+import {
+  addItemByProductId,
+  parseCookieValue,
+  removeItemByProductId,
+  subtractItemByProductId,
+} from '../../util/cookies';
 import { largeText } from '../_app';
 
 // import { useRouter } from 'next/router';
@@ -30,11 +37,12 @@ const descriptionContainer = css`
   display: flex;
   width: 50%;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
 
   div {
     font-size: ${largeText};
+    margin: 16px 0;
   }
 
   h2 {
@@ -48,11 +56,22 @@ const descriptionContainer = css`
   }
 `;
 
+const quantityContainer = css`
+  margin-top: 48px;
+  button {
+    margin: 0 8px;
+  }
+`;
+
 export default function SingleProduct(props) {
   // console.log('---props---', props);
   // console.log('context', props.quantity);
   // const router = useRouter();
   // const { productId } = router.query;
+
+  const quantity = props.shoppingCart.find(
+    (product) => product.id === props.product.id,
+  )?.quantity;
 
   return (
     // Pass props #2
@@ -73,8 +92,7 @@ export default function SingleProduct(props) {
         <div css={descriptionContainer}>
           <h2>{props.product.productName}</h2>
           <div>EUR {(props.product.price / 100).toFixed(2)}</div>
-          <span>Handmade</span>
-          <span>Unique</span>
+          <div> {props.product.productDescription}</div>
           <button
             className="button-default"
             onClick={() => {
@@ -85,7 +103,17 @@ export default function SingleProduct(props) {
           >
             Add to cart
           </button>
-          {/* .m. */}
+          <div css={quantityContainer}>
+            {quantity > 0 ? (
+              <QuantityButtons
+                quantity={quantity}
+                setShoppingCart={props.setShoppingCart}
+                productId={props.product.id}
+              />
+            ) : (
+              ''
+            )}
+          </div>
         </div>
       </div>
     </Layout>
@@ -112,7 +140,7 @@ export async function getServerSideProps(context) {
     props: {
       product: product,
       // Passing a cookie value as a prop
-      quantity: parseCookieValue(context.req.cookies.quantity) || [],
+      quantity: parseCookieValue(context.req.cookies.shoppingCart) || [],
     },
   };
 }
