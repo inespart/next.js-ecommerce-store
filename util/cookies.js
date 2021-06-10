@@ -15,17 +15,66 @@ export function addItemByProductId(id) {
   const newCookieValue = [...getShoppingCartCookieValue()];
 
   // id that we're passing and the id of the product
-  const quantityItemInCookie = newCookieValue.find(
-    (qantityItem) => qantityItem.id === id,
-  );
+  const productIdInCookie = newCookieValue.find((p) => p.id === id);
 
-  if (quantityItemInCookie) {
-    quantityItemInCookie.quantity = quantityItemInCookie.quantity + 1;
+  if (productIdInCookie) {
+    productIdInCookie.quantity = productIdInCookie.quantity + 1;
   } else {
     newCookieValue.push({
       id: id,
       quantity: 1,
     });
+  }
+
+  // this function creates the cookie
+  cookies.set('shoppingCart', newCookieValue);
+
+  return newCookieValue;
+}
+
+export function subtractItemByProductId(id) {
+  // newCookieValue is the decoded version of whatever is inside the cookie; currently an array
+  const newCookieValue = [...getShoppingCartCookieValue()];
+
+  // id that we're passing and the id of the product
+  const productIdInCookie = newCookieValue.find((p) => p.id === id);
+
+  if (productIdInCookie.quantity > 0) {
+    productIdInCookie.quantity = productIdInCookie.quantity - 1;
+  } else {
+    alert(
+      'Do you want to remove the item from the cart? Then please click on the bin to confirm.',
+    );
+  }
+
+  // this function creates the cookie
+  cookies.set('shoppingCart', newCookieValue);
+
+  return newCookieValue;
+}
+
+export function removeItemByProductId(id) {
+  // newCookieValue is the decoded version of whatever is inside the cookie; currently an array
+  const newCookieValue = [...getShoppingCartCookieValue()];
+
+  // // id that we're passing and the id of the product
+  const productIdInCookie = newCookieValue.find((p) => p.id === id);
+  console.log('--productIdInCookie--', productIdInCookie);
+
+  // get index of product with the id that's passed as a parameter
+  const removeIndex = newCookieValue
+    .map(function (item) {
+      return item.id;
+    })
+    .indexOf(id);
+
+  // remove object
+  newCookieValue.splice(removeIndex, 1);
+
+  if (productIdInCookie) {
+    productIdInCookie.quantity = 0;
+  } else {
+    alert('xxx');
   }
 
   // this function creates the cookie

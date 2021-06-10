@@ -72,7 +72,7 @@ export default function SingleProduct(props) {
         </div>
         <div css={descriptionContainer}>
           <h2>{props.product.productName}</h2>
-          <div>EUR {props.product.price}</div>
+          <div>EUR {(props.product.price / 100).toFixed(2)}</div>
           <span>Handmade</span>
           <span>Unique</span>
           <button
@@ -85,11 +85,7 @@ export default function SingleProduct(props) {
           >
             Add to cart
           </button>
-          {
-            props.shoppingCart.find(
-              (product) => product.id === props.product.id,
-            )?.quantity
-          }
+          {/* .m. */}
         </div>
       </div>
     </Layout>

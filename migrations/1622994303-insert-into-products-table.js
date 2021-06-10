@@ -3,25 +3,25 @@ const products = [
     product_name: 'Happy birthday 30',
     src: '/happy_30_transparent.png',
     product_description: 'unique, handmade',
-    price: '5,90',
+    price: '590',
   },
   {
     product_name: 'Merry Christmas',
     src: '/merry_christmas_transparent.png',
     product_description: 'unique, handmade',
-    price: '5,90',
+    price: '590',
   },
   {
     product_name: 'Well done',
     src: '/coming-soon.jpg',
     product_description: 'unique, handmade',
-    price: '3,90',
+    price: '390',
   },
   {
     product_name: 'Congratulations',
     src: '/congratulations_transparent.png',
     product_description: 'unique, handmade',
-    price: '4,90',
+    price: '490',
   },
 ];
 

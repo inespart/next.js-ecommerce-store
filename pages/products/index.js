@@ -87,7 +87,9 @@ export default function Products(props) {
 
               <span>
                 <h4>{product.productName}</h4>
-                <div className="price">EUR {product.price}</div>
+                <div className="price">
+                  EUR {(product.price / 100).toFixed(2)}
+                </div>
                 <div css={moreInfoContainer}>
                   <div>
                     <Link href={`products/${product.id}`}>

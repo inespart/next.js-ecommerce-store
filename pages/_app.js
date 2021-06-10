@@ -57,7 +57,7 @@ export default function MyApp({ Component, pageProps }) {
             margin-top: 24px;
             padding: 16px 24px;
             background-color: ${primaryColor};
-            border: none;
+            border: 1px solid ${primaryColor};
             border-radius: 4px;
             text-transform: uppercase;
             letter-spacing: 8px;
@@ -67,6 +67,19 @@ export default function MyApp({ Component, pageProps }) {
             :hover {
               background-color: ${primaryColorLight};
             }
+          }
+
+          .button-default-ghost {
+            margin-top: 24px;
+            margin-left: 24px;
+            padding: 16px 24px;
+            background-color: none;
+            border: 1px solid ${primaryColor};
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            cursor: pointer;
+            color: ${primaryColor};
           }
 
           .button-small {
@@ -85,6 +98,18 @@ export default function MyApp({ Component, pageProps }) {
               border: 1px solid ${primaryColor};
               color: white;
             }
+          }
+
+          .button-small-noborder {
+            /* margin-top: 25px; */
+
+            background-color: white;
+            border: 1px solid white;
+            /* border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px; */
+            cursor: pointer;
+            color: ${darkGrey};
           }
         `}
       />

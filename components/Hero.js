@@ -52,6 +52,11 @@ export default function Hero() {
             <button className="button-default">Shop Cards</button>
           </a>
         </Link>
+        <Link href="about">
+          <a>
+            <button className="button-default-ghost">About</button>
+          </a>
+        </Link>
       </div>
     </div>
   );
