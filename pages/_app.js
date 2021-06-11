@@ -32,6 +32,7 @@ export default function MyApp({ Component, pageProps }) {
             font-family: 'Raleway', sans-serif;
             font-size: ${normalText};
             color: ${darkGrey};
+            /* position: relative; */
           }
           h1,
           h2,

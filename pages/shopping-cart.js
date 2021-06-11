@@ -61,7 +61,10 @@ const totalSumContainer = css`
   height: 90%;
   padding: 24px;
   margin-top: 24px;
+  margin-bottom: 24px;
   background-color: ${lightGrey};
+  border: 1px solid ${lightGrey};
+  border-radius: 8px;
 
   button {
     justify-content: center;
@@ -87,6 +90,10 @@ export default function ShoppingCart(props) {
   const [finalShoppingCartArray, setFinalShoppingCartArray] = useState(
     props.finalShoppingCartArray,
   );
+
+  const quantity = props.shoppingCart
+    .map((p) => p.quantity)
+    .reduce((total, currentValue) => total + currentValue, 0);
 
   // // retrieve array of product ids that are inside shopping cart
   // const productsByIdInShoppingCart = props.shoppingCart.map((p) => p.id);
@@ -119,7 +126,7 @@ export default function ShoppingCart(props) {
         {totalSum > 0 ? (
           <>
             <div css={shoppingCartItemsContainer}>
-              {/* <h3>Products inside shopping cart:</h3> */}
+              {/* Products inside shopping cart */}
               {finalShoppingCartArray.map((p) => {
                 return (
                   <div css={productContainer} key={`product-${p.id}`}>
@@ -139,38 +146,7 @@ export default function ShoppingCart(props) {
                       <p>EUR {(p.price / 100).toFixed(2)}</p>
                       <p>
                         Quantity:
-                        <button
-                          className="button-small"
-                          onClick={() => {
-                            console.log(props.shoppingCart);
-                            // this updates the cookie state
-                            props.setShoppingCart(addItemByProductId(p.id));
-                            // this updates the frontend quantity
-                            setFinalShoppingCartArray(
-                              finalShoppingCartArray.map((prod) => {
-                                if (prod.id === p.id) {
-                                  // console.log(
-                                  //   'prod inside finalShoppingCartArray',
-                                  //   prod,
-                                  // );
-                                  return {
-                                    ...prod,
-                                    quantity: prod.quantity + 1,
-                                  };
-                                } else {
-                                  return prod;
-                                }
-                              }),
-                            );
-                          }}
-                        >
-                          +
-                        </button>
-                        {
-                          props.shoppingCart.find(
-                            (product) => product.id === p.id,
-                          )?.quantity
-                        }{' '}
+                        {/* Minus Button */}
                         <button
                           className="button-small"
                           onClick={() => {
@@ -193,6 +169,40 @@ export default function ShoppingCart(props) {
                         >
                           -
                         </button>
+                        {/*  Quantity - Number of items in the cart*/}
+                        {
+                          props.shoppingCart.find(
+                            (product) => product.id === p.id,
+                          )?.quantity
+                        }{' '}
+                        {/* Plus Button */}
+                        <button
+                          className="button-small"
+                          onClick={() => {
+                            console.log(props.shoppingCart);
+                            // this updates the cookie state
+                            props.setShoppingCart(addItemByProductId(p.id));
+                            // this updates the quantity on the frontend
+                            setFinalShoppingCartArray(
+                              finalShoppingCartArray.map((prod) => {
+                                if (prod.id === p.id) {
+                                  // console.log(
+                                  //   'prod inside finalShoppingCartArray',
+                                  //   prod,
+                                  // );
+                                  return {
+                                    ...prod,
+                                    quantity: prod.quantity + 1,
+                                  };
+                                } else {
+                                  return prod;
+                                }
+                              }),
+                            );
+                          }}
+                        >
+                          +
+                        </button>
                         <button
                           className="button-small-noborder"
                           onClick={() => {
@@ -214,14 +224,7 @@ export default function ShoppingCart(props) {
             </div>
             <div css={totalSumContainer}>
               <h3>
-                Total Sum (
-                {props.shoppingCart
-                  .map((p) => p.quantity)
-                  .reduce(
-                    (total, currentValue) => total + currentValue,
-                    0,
-                  )}{' '}
-                items):
+                Total Sum ({quantity} {quantity > 1 ? 'items' : 'item'}):
                 <br />
                 <br /> {totalSum} €
               </h3>

@@ -11,19 +11,19 @@ export default function QuantityButtons(props) {
       <button
         className="button-small"
         onClick={() => {
-          props.setShoppingCart(addItemByProductId(props.productId));
+          props.setShoppingCart(subtractItemByProductId(props.productId));
         }}
       >
-        +
+        -
       </button>
       {props.quantity}{' '}
       <button
         className="button-small"
         onClick={() => {
-          props.setShoppingCart(subtractItemByProductId(props.productId));
+          props.setShoppingCart(addItemByProductId(props.productId));
         }}
       >
-        -
+        +
       </button>
       <button
         className="button-small-noborder"

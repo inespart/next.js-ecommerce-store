@@ -7,10 +7,10 @@ const headerStyles = css`
   padding: 32px 128px;
   background-color: white;
   font-weight: 300;
-  /* position: fixed;
+  /* position: fixed; */
   top: 0;
   z-index: 1000;
-  width: 100%; */
+  width: 100%;
 `;
 
 const logoContainer = css`
@@ -21,6 +21,7 @@ const logoContainer = css`
   font-weight: 500;
   color: ${primaryColor};
   font-size: 1.2rem;
+  width: 100%;
 
   a {
     text-decoration: none;

@@ -1,15 +1,9 @@
 import { css } from '@emotion/react';
 import Head from 'next/head';
-import { RiDeleteBin6Line } from 'react-icons/ri';
 import ButtonBack from '../../components/ButtonBack';
 import Layout from '../../components/Layout';
 import QuantityButtons from '../../components/QuantityButtons';
-import {
-  addItemByProductId,
-  parseCookieValue,
-  removeItemByProductId,
-  subtractItemByProductId,
-} from '../../util/cookies';
+import { addItemByProductId, parseCookieValue } from '../../util/cookies';
 import { largeText } from '../_app';
 
 // import { useRouter } from 'next/router';
