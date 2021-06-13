@@ -214,7 +214,7 @@ export default function ShoppingCart(props) {
                             );
                           }}
                         >
-                          <RiDeleteBin6Line />
+                          <RiDeleteBin6Line aria-label="Delete element from shopping cart" />
                         </button>
                       </p>
                     </div>

@@ -62,6 +62,9 @@ const totalSumContainer = css`
 export default function Checkout(props) {
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
+  const [finalShoppingCartArray, setFinalShoppingCartArray] = useState(
+    props.finalShoppingCartArray,
+  );
 
   const setField = (field, value) => {
     setForm({
@@ -146,6 +149,18 @@ export default function Checkout(props) {
     }
   };
 
+  // calculate the total sum of products inside shopping cart
+  const totalSum = finalShoppingCartArray
+    .reduce((acc, product) => {
+      // need parseFloat to transform string into number
+      return acc + parseFloat(product.price / 100) * product.quantity;
+    }, 0)
+    .toFixed(2);
+
+  const quantity = props.shoppingCart
+    .map((p) => p.quantity)
+    .reduce((total, currentValue) => total + currentValue, 0);
+
   return (
     <Layout
       shoppingCart={props.shoppingCart}
@@ -161,8 +176,12 @@ export default function Checkout(props) {
           <Form>
             {/* First Name */}
             <Form.Group>
+              <Form.Label style={{ visibility: 'hidden' }} htmlFor="firstname">
+                First Name
+              </Form.Label>
               <Form.Control
                 type="text"
+                id="firstname"
                 placeholder="First Name"
                 onChange={(e) => setField('firstname', e.target.value)}
                 isInvalid={!!errors.firstname}
@@ -291,20 +310,42 @@ export default function Checkout(props) {
           </Form>
         </div>
         <div css={totalSumContainer}>
-          <h3>Total Sum</h3>
-          {/* <h3>
+          <h3>
             Total Sum ({quantity} {quantity > 1 ? 'items' : 'item'}):
             <br />
             <br /> {totalSum} €
           </h3>
           <br />
-          <Link href="/checkout">
-            <a>
-              <button className="button-default">Checkout</button>
-            </a>
-          </Link> */}
         </div>
       </div>
     </Layout>
   );
+}
+
+export async function getServerSideProps(context) {
+  const { getProducts } = await import('../util/database');
+  const products = await getProducts();
+
+  const rawCookie = context.req.cookies.shoppingCart;
+  const cookieArray = rawCookie ? JSON.parse(rawCookie) : [];
+
+  const finalShoppingCartArray = cookieArray.map((p) => {
+    const draftShoppingCartObject = products.find((prod) => prod.id === p.id);
+    return {
+      id: draftShoppingCartObject.id,
+      productName: draftShoppingCartObject.productName,
+      src: draftShoppingCartObject.src,
+      price: draftShoppingCartObject.price,
+      quantity: p.quantity,
+    };
+  });
+
+  console.log('finalShoppingCartArray', finalShoppingCartArray);
+
+  return {
+    props: {
+      products,
+      finalShoppingCartArray,
+    },
+  };
 }
