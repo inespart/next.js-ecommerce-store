@@ -63,7 +63,7 @@ export default function MyApp({ Component, pageProps }) {
             text-transform: uppercase;
             letter-spacing: 8px;
             cursor: pointer;
-            /* color: white; */
+            color: white;
 
             :hover {
               background-color: ${primaryColorLight};

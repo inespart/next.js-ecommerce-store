@@ -231,7 +231,12 @@ export default function ShoppingCart(props) {
               <br />
               <Link href="/checkout">
                 <a>
-                  <button className="button-default">Checkout</button>
+                  <button
+                    data-cy="checkout-button-on-shoppingcart-page"
+                    className="button-default"
+                  >
+                    Checkout
+                  </button>
                 </a>
               </Link>
             </div>

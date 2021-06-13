@@ -95,7 +95,7 @@ export default function Header(props) {
         </Link>
         <Link href="/shopping-cart">
           <a>
-            <div css={shoppingCartContainer}>
+            <div css={shoppingCartContainer} data-cy="cart-icon-in-header">
               <img src="/shopping_cart.png" alt="Shopping Cart" />
               <div className="quantityCounter">
                 {/* adding.props #4 */}
