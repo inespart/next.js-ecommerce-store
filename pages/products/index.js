@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '../../components/Layout';
 import { addItemByProductId } from '../../util/cookies';
-import { darkGrey, smallText } from '../_app';
+import { primaryColor, smallText } from '../../util/sharedStyles';
 
 // Array of products was copy pasted to database.js
 
@@ -18,14 +18,14 @@ const containerStyle = css`
 
 const productThumbStyle = css`
   width: 300px;
-  height: 350px;
+  height: 400px;
   margin: 10px;
   font-weight: 300;
 
   img {
     width: 100%;
     height: auto;
-    box-shadow: 3px 3px 5px 6px #ccc;
+    filter: drop-shadow(2px 4px 8px #585858);
     margin-bottom: 12px;
   }
 
@@ -41,7 +41,8 @@ const productThumbStyle = css`
   }
 
   a {
-    color: ${darkGrey};
+    color: ${primaryColor};
+    text-decoration: none;
 
     :hover {
       font-weight: 400;
@@ -63,7 +64,10 @@ const buttonContainer = css`
 export default function Products(props) {
   console.log('props', props);
   return (
-    <Layout>
+    <Layout
+      shoppingCart={props.shoppingCart}
+      setShoppingCart={props.setShoppingCart}
+    >
       <Head>
         <title>Products</title>
       </Head>
@@ -82,7 +86,9 @@ export default function Products(props) {
 
               <span>
                 <h4>{product.productName}</h4>
-                <div className="price">EUR {product.price}</div>
+                <div className="price">
+                  EUR {(product.price / 100).toFixed(2)}
+                </div>
                 <div css={moreInfoContainer}>
                   <div>
                     <Link href={`products/${product.id}`}>
@@ -94,7 +100,7 @@ export default function Products(props) {
                       className="button-small"
                       onClick={() => {
                         // using the js-cookie library to set and get cookies
-                        addItemByProductId(product.id);
+                        props.setShoppingCart(addItemByProductId(product.id));
                       }}
                     >
                       + Add to cart
@@ -113,11 +119,13 @@ export default function Products(props) {
 // This code will only run on the server
 export async function getServerSideProps() {
   // Allows us to import inside of a function
-  const { products } = await import('../../util/database');
+  // changed products for getProducts - first PostgreSQL lecture
+  const { getProducts } = await import('../../util/database');
+  const products = await getProducts();
   // This console.log will only show up in Node.js
   console.log('products', products);
 
-  // These props will show up in line 13 only on this page
+  // These props will show up as props to the function Products(props) only on this page
   return {
     props: {
       products: products,

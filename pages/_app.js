@@ -1,18 +1,23 @@
 import { css, Global } from '@emotion/react';
 import Head from 'next/head';
-
-// Color Palette
-export const darkGrey = '#001c00';
-export const lightGrey = '#f3f4f6';
-export const primaryColor = '#b7860b';
-export const primaryColorLight = '#cf980c';
-
-// Text sizes
-export const normalText = '16px';
-export const smallText = '12px';
-export const largeText = '24px';
+import { useEffect, useState } from 'react';
+import { getShoppingCartCookieValue } from '../util/cookies';
+import {
+  darkGrey,
+  normalText,
+  primaryColor,
+  primaryColorLight,
+} from '../util/sharedStyles';
 
 export default function MyApp({ Component, pageProps }) {
+  // make state variables globally accessible
+  const [shoppingCart, setShoppingCart] = useState([]);
+
+  // Updating the state variable after the page loads, so that we don't run into server-side-rendering inconsistencies
+  useEffect(() => {
+    setShoppingCart(getShoppingCartCookieValue());
+  }, []);
+
   return (
     <>
       <Global
@@ -27,6 +32,7 @@ export default function MyApp({ Component, pageProps }) {
             font-family: 'Raleway', sans-serif;
             font-size: ${normalText};
             color: ${darkGrey};
+            /* position: relative; */
           }
           h1,
           h2,
@@ -52,7 +58,7 @@ export default function MyApp({ Component, pageProps }) {
             margin-top: 24px;
             padding: 16px 24px;
             background-color: ${primaryColor};
-            border: none;
+            border: 1px solid ${primaryColor};
             border-radius: 4px;
             text-transform: uppercase;
             letter-spacing: 8px;
@@ -62,6 +68,19 @@ export default function MyApp({ Component, pageProps }) {
             :hover {
               background-color: ${primaryColorLight};
             }
+          }
+
+          .button-default-ghost {
+            margin-top: 24px;
+            margin-left: 24px;
+            padding: 16px 24px;
+            background-color: none;
+            border: 1px solid ${primaryColor};
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            cursor: pointer;
+            color: ${primaryColor};
           }
 
           .button-small {
@@ -81,12 +100,29 @@ export default function MyApp({ Component, pageProps }) {
               color: white;
             }
           }
+
+          .button-small-noborder {
+            /* margin-top: 25px; */
+
+            background-color: white;
+            border: 1px solid white;
+            /* border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px; */
+            cursor: pointer;
+            color: ${darkGrey};
+          }
         `}
       />
       <Head>
         <link icon="favicon" href="favicon.ico" />
       </Head>
-      <Component {...pageProps} />
+      {/* Pass props so they appear in every single page #1 */}
+      <Component
+        shoppingCart={shoppingCart}
+        setShoppingCart={setShoppingCart}
+        {...pageProps}
+      />
     </>
   );
 }

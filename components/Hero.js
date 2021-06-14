@@ -1,8 +1,6 @@
 import { css } from '@emotion/react';
 import Link from 'next/link';
 
-// import { darkGrey } from '../pages/_app';
-
 const heroStyle = css`
   background-image: url('/heroimage.jpg');
   background-size: cover;
@@ -52,6 +50,11 @@ export default function Hero() {
         <Link href="products">
           <a>
             <button className="button-default">Shop Cards</button>
+          </a>
+        </Link>
+        <Link href="about">
+          <a>
+            <button className="button-default-ghost">About</button>
           </a>
         </Link>
       </div>

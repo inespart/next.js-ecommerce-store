@@ -10,9 +10,14 @@ const containerStyles = css`
 `;
 
 export default function Layout(props) {
+  // console.log('props in layout', props);
   return (
     <>
-      <Header />
+      {/* Passing props #3 */}
+      <Header
+        shoppingCart={props.shoppingCart}
+        setShoppingCart={props.setShoppingCart}
+      />
       <div css={containerStyles}>{props.children}</div>
       <Footer />
     </>
