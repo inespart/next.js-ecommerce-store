@@ -4,6 +4,8 @@ import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Layout from '../components/Layout';
 import { lightGrey, normalText, smallText } from '../util/sharedStyles';
+import { calculateTotalQuantity } from '../util/totalQuantity';
+import { calculateTotalSum } from '../util/totalSum';
 
 const checkoutPageContainer = css`
   display: flex;
@@ -87,6 +89,16 @@ const floatContainer = css`
 
   .clear {
     clear: both;
+  }
+
+  .line {
+    padding: 8px 0;
+    border-bottom: 1px solid black;
+  }
+
+  h4 {
+    font-weight: 400;
+    margin: 4px 0;
   }
 `;
 
@@ -201,16 +213,13 @@ export default function Checkout(props) {
   };
 
   // calculate the total sum of products inside shopping cart
-  const totalSum = finalShoppingCartArray
-    .reduce((acc, product) => {
-      // need parseFloat to transform string into number
-      return acc + parseFloat(product.price / 100) * product.quantity;
-    }, 0)
-    .toFixed(2);
+  const totalSum = calculateTotalSum(finalShoppingCartArray);
 
-  const quantity = props.shoppingCart
-    .map((p) => p.quantity)
-    .reduce((total, currentValue) => total + currentValue, 0);
+  const quantity = calculateTotalQuantity(props.shoppingCart);
+
+  const shippingCosts = totalSum >= 30 ? 0 : 10;
+  // console.log('shippingCosts', shippingCosts);
+  // console.log(typeof shippingCosts);
 
   return (
     <Layout
@@ -479,7 +488,6 @@ export default function Checkout(props) {
           <h3>
             {quantity} {quantity > 1 ? 'items' : 'item'} in cart:
           </h3>
-          <br />
           {finalShoppingCartArray.map((p) => {
             return (
               <div css={totalInCartStyle} key={`product-${p.id}`}>
@@ -498,10 +506,23 @@ export default function Checkout(props) {
             );
           })}
           <br />
-          <br />
+
+          <div css={floatContainer}>
+            <h4 className="left">Price:</h4>
+            <h4 className="right">{totalSum} €</h4>
+            <div className="clear"> </div>
+          </div>
+          <div css={floatContainer}>
+            <h4 className="left">Shipping Costs:</h4>
+            <h4 className="right">{shippingCosts} €</h4>
+            <div className="clear"> </div>
+            <div className="line" />
+          </div>
           <div css={floatContainer}>
             <h3 className="left">Total Sum:</h3>
-            <h3 className="right">{totalSum} €</h3>
+            <h3 className="right">
+              {(parseFloat(totalSum) + shippingCosts).toFixed(2)} €
+            </h3>
             <div className="clear"> </div>
           </div>
 

@@ -11,6 +11,11 @@ const navBarContainer = css`
     text-decoration: none;
     color: #001c00;
 
+    @media (max-width: 880px) {
+      margin-left: auto;
+      padding-bottom: 20px;
+    }
+
     :hover {
       font-weight: 400;
     }
@@ -18,6 +23,14 @@ const navBarContainer = css`
 
   a + a {
     margin-left: 40px;
+
+    @media (max-width: 880px) {
+      margin-left: auto;
+    }
+  }
+
+  @media (max-width: 880px) {
+    flex-flow: column nowrap;
   }
 `;
 

@@ -16,6 +16,7 @@ export function addItemByProductId(id) {
 
   // id that we're passing and the id of the product
   const productIdInCookie = newCookieValue.find((p) => p.id === id);
+  // console.log('productIdInCookie', productIdInCookie);
 
   if (productIdInCookie) {
     productIdInCookie.quantity = productIdInCookie.quantity + 1;
@@ -39,12 +40,24 @@ export function subtractItemByProductId(id) {
   // id that we're passing and the id of the product
   const productIdInCookie = newCookieValue.find((p) => p.id === id);
 
-  if (productIdInCookie.quantity > 0) {
+  if (productIdInCookie.quantity > 1) {
     productIdInCookie.quantity = productIdInCookie.quantity - 1;
   } else {
-    alert(
-      'Do you want to remove the item from the cart? Then please click on the bin to confirm.',
-    );
+    // get index of product with the id that's passed as a parameter
+    const removeIndex = newCookieValue
+      .map(function (item) {
+        return item.id;
+      })
+      .indexOf(id);
+
+    // remove object
+    newCookieValue.splice(removeIndex, 1);
+
+    // if (productIdInCookie) {
+    //   productIdInCookie.quantity = 0;
+    // } else {
+    //   alert('xxx');
+    // }
   }
 
   // this function creates the cookie

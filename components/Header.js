@@ -1,9 +1,11 @@
 import { css } from '@emotion/react';
 import Link from 'next/link';
 import { primaryColor, smallText } from '../util/sharedStyles';
+import HeaderRightNav from './HeaderRightNav';
 
 const headerStyles = css`
   display: flex;
+  justify-content: space-between;
   padding: 32px 128px;
   background-color: white;
   font-weight: 300;
@@ -29,51 +31,51 @@ const logoContainer = css`
   }
 `;
 
-const navBarContainer = css`
-  display: flex;
-  align-items: center;
-  margin-left: auto;
+// const navBarContainer = css`
+//   display: flex;
+//   align-items: center;
+//   margin-left: auto;
 
-  a {
-    text-decoration: none;
-    color: #001c00;
+//   a {
+//     text-decoration: none;
+//     color: #001c00;
 
-    :hover {
-      font-weight: 400;
-    }
-  }
+//     :hover {
+//       font-weight: 400;
+//     }
+//   }
 
-  a + a {
-    margin-left: 40px;
-  }
-`;
+//   a + a {
+//     margin-left: 40px;
+//   }
+// `;
 
-const shoppingCartContainer = css`
-  display: flex;
-  align-items: center;
+// const shoppingCartContainer = css`
+//   display: flex;
+//   align-items: center;
 
-  img {
-    width: 32px;
-    height: auto;
-  }
+//   img {
+//     width: 32px;
+//     height: auto;
+//   }
 
-  div {
-    display: flex;
-    margin-left: 4px;
-    text-align: center;
-  }
+//   div {
+//     display: flex;
+//     margin-left: 4px;
+//     text-align: center;
+//   }
 
-  .quantityCounter {
-    background-color: white;
-    font-size: ${smallText};
-    padding: 4px;
-    border-radius: 50%;
-    width: 25px;
-    height: 25px;
-    text-align: center;
-    display: inline-block;
-  }
-`;
+//   .quantityCounter {
+//     background-color: white;
+//     font-size: ${smallText};
+//     padding: 4px;
+//     border-radius: 50%;
+//     width: 25px;
+//     height: 25px;
+//     text-align: center;
+//     display: inline-block;
+//   }
+// `;
 
 export default function Header(props) {
   return (
@@ -83,7 +85,11 @@ export default function Header(props) {
           <a>Die Schreiberei</a>
         </Link>
       </div>
-      <div css={navBarContainer}>
+      <HeaderRightNav
+        shoppingCart={props.shoppingCart}
+        setShoppingCart={props.setShoppingCart}
+      />
+      {/* <div css={navBarContainer}>
         <Link href="/">
           <a>Home</a>
         </Link>
@@ -97,16 +103,16 @@ export default function Header(props) {
           <a>
             <div css={shoppingCartContainer} data-cy="cart-icon-in-header">
               <img src="/shopping_cart.png" alt="Shopping Cart" />
-              <div className="quantityCounter">
-                {/* adding.props #4 */}
-                {props.shoppingCart
+            <div className="quantityCounter"> */}
+      {/* adding.props #4 */}
+      {/* {props.shoppingCart
                   .map((p) => p.quantity)
                   .reduce((total, currentValue) => total + currentValue, 0)}
               </div>
             </div>
           </a>
         </Link>
-      </div>
+      </div> */}
     </header>
   );
 }

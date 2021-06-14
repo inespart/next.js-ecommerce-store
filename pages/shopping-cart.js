@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import Head from 'next/head';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import Layout from '../components/Layout';
 import {
@@ -10,6 +10,8 @@ import {
   subtractItemByProductId,
 } from '../util/cookies';
 import { lightGrey, primaryColor, smallText } from '../util/sharedStyles';
+import { calculateTotalQuantity } from '../util/totalQuantity';
+import { calculateTotalSum } from '../util/totalSum';
 
 const shoppingCartContainer = css`
   display: flex;
@@ -91,9 +93,33 @@ export default function ShoppingCart(props) {
     props.finalShoppingCartArray,
   );
 
-  const quantity = props.shoppingCart
-    .map((p) => p.quantity)
-    .reduce((total, currentValue) => total + currentValue, 0);
+  useEffect(() => {
+    // [
+    // {id: 1, quantity: 2, price: 590, src:"/", productName: ""},
+    // {id: 2, quantity: 1, price: 590, src:"/", productName: ""}
+    // ]
+    const newFinalShoppingCartArray = props.finalShoppingCartArray
+      // filter out all objects with a quantity below 1
+      .filter((pro) => {
+        const isInSubtractedValue = props.shoppingCart.find((item) => {
+          return pro.id === item.id;
+        });
+        return isInSubtractedValue;
+      })
+      // update the quantity of objects inside newFinalShoppingCartArray with the quantity inside subtractedValue
+      .map((pro) => {
+        const q = props.shoppingCart.find((item) => {
+          return item.id === pro.id;
+        }).quantity;
+
+        pro.quantity = q;
+        return pro;
+      });
+    setFinalShoppingCartArray(newFinalShoppingCartArray);
+    // if either of these things changes, then it will update the finalShoppingCart
+  }, [props.finalShoppingCartArray, props.shoppingCart]);
+
+  const quantity = calculateTotalQuantity(props.shoppingCart);
 
   // // retrieve array of product ids that are inside shopping cart
   // const productsByIdInShoppingCart = props.shoppingCart.map((p) => p.id);
@@ -106,12 +132,7 @@ export default function ShoppingCart(props) {
   // // console.log('---productsInShoppingCart---', productsInShoppingCart);
 
   // calculate the total sum of products inside shopping cart
-  const totalSum = finalShoppingCartArray
-    .reduce((acc, product) => {
-      // need parseFloat to transform string into number
-      return acc + parseFloat(product.price / 100) * product.quantity;
-    }, 0)
-    .toFixed(2);
+  const totalSum = calculateTotalSum(finalShoppingCartArray);
 
   return (
     <Layout
@@ -150,28 +171,18 @@ export default function ShoppingCart(props) {
                         <button
                           className="button-small"
                           onClick={() => {
-                            props.setShoppingCart(
-                              subtractItemByProductId(p.id),
+                            // [{id: 1, quantity: 2}]
+                            const subtractedValue = subtractItemByProductId(
+                              p.id,
                             );
-                            setFinalShoppingCartArray(
-                              finalShoppingCartArray.map((prod) => {
-                                if (prod.id === p.id) {
-                                  return {
-                                    ...prod,
-                                    quantity: prod.quantity - 1,
-                                  };
-                                } else {
-                                  return prod;
-                                }
-                              }),
-                            );
+                            props.setShoppingCart(subtractedValue);
                           }}
                         >
                           -
                         </button>
                         {/*  Quantity - Number of items in the cart*/}
                         {
-                          props.shoppingCart.find(
+                          finalShoppingCartArray.find(
                             (product) => product.id === p.id,
                           )?.quantity
                         }{' '}
@@ -179,26 +190,12 @@ export default function ShoppingCart(props) {
                         <button
                           className="button-small"
                           onClick={() => {
-                            console.log(props.shoppingCart);
+                            console.log(
+                              'props.shoppingCart',
+                              props.shoppingCart,
+                            );
                             // this updates the cookie state
                             props.setShoppingCart(addItemByProductId(p.id));
-                            // this updates the quantity on the frontend
-                            setFinalShoppingCartArray(
-                              finalShoppingCartArray.map((prod) => {
-                                if (prod.id === p.id) {
-                                  // console.log(
-                                  //   'prod inside finalShoppingCartArray',
-                                  //   prod,
-                                  // );
-                                  return {
-                                    ...prod,
-                                    quantity: prod.quantity + 1,
-                                  };
-                                } else {
-                                  return prod;
-                                }
-                              }),
-                            );
                           }}
                         >
                           +
