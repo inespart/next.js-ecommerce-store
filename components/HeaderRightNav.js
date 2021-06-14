@@ -76,7 +76,11 @@ export default function HeaderRightNav(props) {
       <Link href="/shopping-cart">
         <a>
           <div css={shoppingCartContainer}>
-            <img src="/shopping_cart.png" alt="Shopping Cart" />
+            <img
+              src="/shopping_cart.png"
+              alt="Shopping Cart"
+              data-cy="cart-icon-in-header"
+            />
             <div className="quantityCounter">
               {/* adding.props #4 */}
               {props.shoppingCart

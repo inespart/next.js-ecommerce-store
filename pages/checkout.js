@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Layout from '../components/Layout';
@@ -103,6 +104,7 @@ const floatContainer = css`
 `;
 
 export default function Checkout(props) {
+  const router = useRouter();
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
   const [finalShoppingCartArray, setFinalShoppingCartArray] = useState(
@@ -209,6 +211,7 @@ export default function Checkout(props) {
     } else {
       // No errors! Put any logic here for the form submission!
       // alert('Thank you for your feedback!');
+      router.push('/thank-you/');
     }
   };
 
@@ -467,16 +470,10 @@ export default function Checkout(props) {
                 </Form.Control.Feedback>
               </Form.Group>
             </div>
-            {/* Submit Button */}
-            {/* <input
-              type="submit"
-              value="Submit"
-              className="button-default"
-              onClick={(e) => handleSubmit(e)}
-            /> */}
-
+            {/* Pay Button */}
             <button
-              value="Submit"
+              data-cy="pay-button"
+              type="submit"
               className="button-default"
               onClick={(e) => handleSubmit(e)}
             >
@@ -507,7 +504,7 @@ export default function Checkout(props) {
           })}
           <br />
 
-          <div css={floatContainer}>
+          {/* <div css={floatContainer}>
             <h4 className="left">Price:</h4>
             <h4 className="right">{totalSum} €</h4>
             <div className="clear"> </div>
@@ -517,11 +514,12 @@ export default function Checkout(props) {
             <h4 className="right">{shippingCosts} €</h4>
             <div className="clear"> </div>
             <div className="line" />
-          </div>
+          </div> */}
           <div css={floatContainer}>
             <h3 className="left">Total Sum:</h3>
             <h3 className="right">
-              {(parseFloat(totalSum) + shippingCosts).toFixed(2)} €
+              {totalSum} €
+              {/* {(parseFloat(totalSum) + shippingCosts).toFixed(2)} € */}
             </h3>
             <div className="clear"> </div>
           </div>

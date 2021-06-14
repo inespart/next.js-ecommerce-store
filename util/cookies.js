@@ -52,12 +52,6 @@ export function subtractItemByProductId(id) {
 
     // remove object
     newCookieValue.splice(removeIndex, 1);
-
-    // if (productIdInCookie) {
-    //   productIdInCookie.quantity = 0;
-    // } else {
-    //   alert('xxx');
-    // }
   }
 
   // this function creates the cookie

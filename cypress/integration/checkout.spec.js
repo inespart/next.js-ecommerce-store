@@ -22,7 +22,7 @@ describe('can proceed through checkout flow to payment page and thank you page',
     cy.get('[data-cy="credit-card-expiry-date"]').type('12/23');
     cy.get('[data-cy="credit-card-cvv"]').type('333');
     // User clicks on Submit Button
-    cy.contains('Submit').click();
+    cy.get('[data-cy="pay-button"]').click();
     // User can see Thank you page
     cy.contains('Thank you for your purchase');
   });

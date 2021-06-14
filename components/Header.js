@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import Link from 'next/link';
-import { primaryColor, smallText } from '../util/sharedStyles';
+import { primaryColor } from '../util/sharedStyles';
 import HeaderRightNav from './HeaderRightNav';
 
 const headerStyles = css`
