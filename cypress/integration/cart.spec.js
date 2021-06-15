@@ -9,7 +9,9 @@ describe('can add to cart, change quantity and remove from cart', () => {
     //
     cy.contains('Add to cart').click();
     // User increases quantity
-    cy.get('[data-cy="increase-quantity-cart"]').click();
+    cy.get('[data-cy="increase-quantity-cart"]', {
+      withinSubject: null,
+    }).click();
     // User decreases quantity
     cy.get('[data-cy="decrease-quantity-cart"]').click();
     // User removes item from cart
