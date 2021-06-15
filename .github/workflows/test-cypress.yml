@@ -24,6 +24,8 @@ jobs:
         with:
           build: yarn migrate up
           start: yarn dev
+          wait-on: 'http://localhost:3000'
+          wait-on-timeout: 300;
         env:
           API_BASE_URL: http://localhost:3000/api
           PGHOST: localhost

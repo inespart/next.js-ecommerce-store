@@ -1,7 +1,9 @@
 describe('can proceed through checkout flow to payment page and thank you page', () => {
   it('proceeds through checkout flow', () => {
-    // User visits product page
-    cy.visit('http://localhost:3000/products/6');
+    // User visits products page
+    cy.visit('http://localhost:3000/products');
+    // User clicks on one product
+    cy.get('[data-cy="single-product-link"]').first().click();
     // User clicks on Add to cart button to make sure there's an item in the cart
     cy.contains('Add to cart').click();
     // User clicks on shopping cart icon in header
