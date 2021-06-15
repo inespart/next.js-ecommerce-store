@@ -78,7 +78,7 @@ export default function Products(props) {
           return (
             <div key={`product-${product.id}`} css={productThumbStyle}>
               <Link href={`products/${product.id}`}>
-                <a>
+                <a data-cy="single-product-link">
                   <img src={product.src} alt={product.productName} />
                 </a>
               </Link>
