@@ -88,6 +88,7 @@ export default function SingleProduct(props) {
           <div>EUR {(props.product.price / 100).toFixed(2)}</div>
           <div> {props.product.productDescription}</div>
           <button
+            data-cy="add-to-cart"
             className="button-default"
             onClick={() => {
               // using the js-cookie library to set and get cookies
