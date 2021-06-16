@@ -7,7 +7,7 @@ import Header from './Header';
 const containerStyles = css`
   /* padding: 0 150px; */
   /* maybe delete again */
-  position: relative;
+  /* position: relative; */
   /* min-height: 100vh; */
 `;
 

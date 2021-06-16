@@ -1,20 +1,23 @@
 import { css } from '@emotion/react';
 import Link from 'next/link';
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { primaryColor } from '../util/sharedStyles';
 import { ShoppingCartItem } from '../util/types';
+import HeaderBurger from './HeaderBurger';
 import HeaderRightNav from './HeaderRightNav';
 
 const headerStyles = css`
+  width: 100%;
+  height: 82px;
+  padding: 12px 128px;
   display: flex;
   justify-content: space-between;
-  padding: 32px 128px;
   background-color: white;
   font-weight: 300;
-  /* position: fixed; */
-  top: 0;
-  z-index: 1000;
-  width: 100%;
+
+  @media (max-width: 880px) {
+    padding: 32px 64px;
+  }
 `;
 
 const logoContainer = css`
@@ -25,7 +28,8 @@ const logoContainer = css`
   font-weight: 500;
   color: ${primaryColor};
   font-size: 1.2rem;
-  width: 100%;
+  /* padding: 32px 128px; */
+  /* width: 100%; */
 
   a {
     text-decoration: none;
@@ -93,6 +97,7 @@ type Props = {
 
 export default function Header(props: Props) {
   console.log('props insider header', props);
+  const [open, setOpen] = useState(false);
   return (
     <header css={headerStyles}>
       <div css={logoContainer}>
@@ -103,7 +108,9 @@ export default function Header(props: Props) {
       <HeaderRightNav
         shoppingCart={props.shoppingCart}
         setShoppingCart={props.setShoppingCart}
+        open={open}
       />
+      <HeaderBurger open={open} setOpen={setOpen} />
       {/* <div css={navBarContainer}>
         <Link href="/">
           <a>Home</a>

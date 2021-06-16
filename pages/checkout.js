@@ -19,6 +19,10 @@ const formContainer = css`
   padding: 0 128px;
   width: 65%;
 
+  @media (max-width: 880px) {
+    padding: 0 64px;
+  }
+
   h2 {
     margin-left: 0;
     margin-top: 64px;

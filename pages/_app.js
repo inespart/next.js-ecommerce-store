@@ -42,6 +42,10 @@ export default function MyApp({ Component, pageProps }) {
           h1 {
             margin: 12px 128px;
             font-size: 3rem;
+
+            @media (max-width: 880px) {
+              margin: 12px 64px;
+            }
           }
           h2 {
             margin: 12px 128px;

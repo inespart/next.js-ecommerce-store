@@ -1,19 +1,27 @@
 import { css } from '@emotion/react';
 import Link from 'next/link';
-import { smallText } from '../util/sharedStyles';
+import { darkGrey, primaryColorLight, smallText } from '../util/sharedStyles';
 
-const navBarContainer = css`
+const navBarContainer = (open) => css`
+  /* selects the ul */
+  list-style: none;
   display: flex;
+  flex-flow: row nowrap;
   align-items: center;
-  margin-left: auto;
+  z-index: 1200;
+
+  padding: 0;
+
+  li {
+    padding: 16px 24px;
+  }
 
   a {
     text-decoration: none;
-    color: #001c00;
+    color: ${darkGrey};
 
     @media (max-width: 880px) {
-      margin-left: auto;
-      padding-bottom: 20px;
+      padding-bottom: 16px;
     }
 
     :hover {
@@ -21,16 +29,18 @@ const navBarContainer = css`
     }
   }
 
-  a + a {
-    margin-left: 40px;
-
-    @media (max-width: 880px) {
-      margin-left: auto;
-    }
-  }
-
   @media (max-width: 880px) {
     flex-flow: column nowrap;
+    background-color: ${primaryColorLight};
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 200px;
+    margin-top: 0;
+    padding-top: 3rem;
+    transform: ${open ? 'translateX(0)' : 'translateX(100%)'};
+    transition: transform 0.3s ease-in-out;
   }
 `;
 
@@ -63,33 +73,42 @@ const shoppingCartContainer = css`
 
 export default function HeaderRightNav(props) {
   return (
-    <div css={navBarContainer}>
+    <ul css={navBarContainer(props.open)}>
       <Link href="/">
-        <a>Home</a>
+        <a>
+          <li>Home</li>
+        </a>
       </Link>
       <Link href="/products">
-        <a>Products</a>
+        <a>
+          {' '}
+          <li>Products</li>
+        </a>
       </Link>
       <Link href="/about">
-        <a>About</a>
+        <a>
+          <li>About</li>
+        </a>
       </Link>
       <Link href="/shopping-cart">
         <a>
-          <div css={shoppingCartContainer}>
-            <img
-              src="/shopping_cart.png"
-              alt="Shopping Cart"
-              data-cy="cart-icon-in-header"
-            />
-            <div className="quantityCounter">
-              {/* adding.props #4 */}
-              {props.shoppingCart
-                .map((p) => p.quantity)
-                .reduce((total, currentValue) => total + currentValue, 0)}
+          <li>
+            <div css={shoppingCartContainer}>
+              <img
+                src="/shopping_cart.png"
+                alt="Shopping Cart"
+                data-cy="cart-icon-in-header"
+              />
+              <div className="quantityCounter">
+                {/* adding.propxs #4 */}
+                {props.shoppingCart
+                  .map((p) => p.quantity)
+                  .reduce((total, currentValue) => total + currentValue, 0)}
+              </div>
             </div>
-          </div>
+          </li>
         </a>
       </Link>
-    </div>
+    </ul>
   );
 }

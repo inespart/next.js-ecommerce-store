@@ -9,6 +9,10 @@ const aboutPageContainer = css`
   flex-direction: column;
   padding: 0 128px;
   width: 70%;
+
+  @media (max-width: 880px) {
+    padding: 0 64px;
+  }
 `;
 
 type Props = {

@@ -14,6 +14,11 @@ const productContainer = css`
   padding-top: 64px;
   padding-bottom: 96px;
   display: flex;
+
+  @media (max-width: 880px) {
+    padding-left: 64px;
+    padding-right: 64px;
+  }
 `;
 
 const imageContainer = css`

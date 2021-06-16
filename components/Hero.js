@@ -19,10 +19,6 @@ const heroHeadersContainer = css`
   width: 30%;
 
   @media (max-width: 1280px) {
-    width: 30%;
-  }
-
-  @media (max-width: 880px) {
     width: 40%;
   }
 
@@ -46,6 +42,8 @@ const buttonContainer = css`
 
 const heroSubheading = css`
   text-transform: uppercase;
+  text-shadow: 1px 1px 2px white, 0 0 1em white, 0 0 0.2em white;
+
   letter-spacing: 8px;
   padding-left: 24px;
   padding-right: 24px;
@@ -71,7 +69,7 @@ const heroHeading = css`
       line-height: 64px;
     }
 
-    @media (max-width: 700px) {
+    @media (max-width: 880px) {
       font-size: 1.5rem;
       line-height: 58px;
     }
