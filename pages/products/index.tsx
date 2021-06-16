@@ -1,9 +1,11 @@
 import { css } from '@emotion/react';
 import Head from 'next/head';
 import Link from 'next/link';
+import { Dispatch, SetStateAction } from 'react';
 import Layout from '../../components/Layout';
 import { addItemByProductId } from '../../util/cookies';
 import { primaryColor, smallText } from '../../util/sharedStyles';
+import { ShoppingCartItem } from '../../util/types';
 
 // Array of products was copy pasted to database.js
 
@@ -60,9 +62,33 @@ const buttonContainer = css`
   margin-left: auto;
 `;
 
+// Typescript
+
+type ProductObject = {
+  id: number;
+  productName: string;
+  src: string;
+  productDescription: string;
+  price: string;
+};
+
+type Props = {
+  shoppingCart: ShoppingCartItem[];
+  setShoppingCart: Dispatch<
+    SetStateAction<
+      {
+        id: number;
+        quantity: number;
+      }[]
+    >
+  >;
+  // we are having an array of this particular type of object
+  products: ProductObject[];
+};
+
 // Props will come from GetServerSide below
-export default function Products(props) {
-  console.log('props', props);
+export default function Products(props: Props) {
+  console.log('props in gssp', props);
   return (
     <Layout
       shoppingCart={props.shoppingCart}
@@ -87,7 +113,7 @@ export default function Products(props) {
               <span>
                 <h4>{product.productName}</h4>
                 <div className="price">
-                  EUR {(product.price / 100).toFixed(2)}
+                  EUR {(parseFloat(product.price) / 100).toFixed(2)}
                 </div>
                 <div css={moreInfoContainer}>
                   <div>

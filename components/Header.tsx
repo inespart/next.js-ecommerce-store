@@ -1,6 +1,8 @@
 import { css } from '@emotion/react';
 import Link from 'next/link';
+import { Dispatch, SetStateAction } from 'react';
 import { primaryColor } from '../util/sharedStyles';
+import { ShoppingCartItem } from '../util/types';
 import HeaderRightNav from './HeaderRightNav';
 
 const headerStyles = css`
@@ -77,7 +79,20 @@ const logoContainer = css`
 //   }
 // `;
 
-export default function Header(props) {
+type Props = {
+  shoppingCart: ShoppingCartItem[];
+  setShoppingCart: Dispatch<
+    SetStateAction<
+      {
+        id: number;
+        quantity: number;
+      }[]
+    >
+  >;
+};
+
+export default function Header(props: Props) {
+  console.log('props insider header', props);
   return (
     <header css={headerStyles}>
       <div css={logoContainer}>

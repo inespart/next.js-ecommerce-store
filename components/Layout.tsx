@@ -1,4 +1,6 @@
 import { css } from '@emotion/react';
+import { Dispatch, SetStateAction } from 'react';
+import { ShoppingCartItem } from '../util/types';
 import Footer from './Footer';
 import Header from './Header';
 
@@ -9,7 +11,20 @@ const containerStyles = css`
   /* min-height: 100vh; */
 `;
 
-export default function Layout(props) {
+type Props = {
+  shoppingCart: ShoppingCartItem[];
+  setShoppingCart: Dispatch<
+    SetStateAction<
+      {
+        id: number;
+        quantity: number;
+      }[]
+    >
+  >;
+  children: React.ReactNode;
+};
+
+export default function Layout(props: Props) {
   // console.log('props in layout', props);
   return (
     <>
@@ -19,6 +34,7 @@ export default function Layout(props) {
         setShoppingCart={props.setShoppingCart}
       />
       <div css={containerStyles}>{props.children}</div>
+      {/* {console.log('props inside layout component', props.children)} */}
       <Footer />
     </>
   );
