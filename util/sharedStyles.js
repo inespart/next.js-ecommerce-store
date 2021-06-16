@@ -6,5 +6,5 @@ export const primaryColorLight = '#cf980c';
 
 // Text sizes
 export const normalText = '16px';
-export const smallText = '12px';
-export const largeText = '24px';
+export const smallText = '0.75rem';
+export const largeText = '1.5rem';

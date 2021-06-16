@@ -17,6 +17,30 @@ const heroHeadersContainer = css`
   bottom: 30%;
   left: 10%;
   width: 30%;
+
+  @media (max-width: 1280px) {
+    width: 30%;
+  }
+
+  @media (max-width: 880px) {
+    bottom: 40%;
+  }
+
+  button {
+    @media (max-width: 950px) {
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+
+    @media (max-width: 935px) {
+    }
+  }
+`;
+
+const buttonContainer = css`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 `;
 
 const heroSubheading = css`
@@ -36,6 +60,20 @@ const heroHeading = css`
   h1 {
     margin: 0 0;
     line-height: 96px;
+
+    @media (max-width: 1280px) {
+      font-size: 2.5rem;
+    }
+
+    @media (max-width: 950px) {
+      font-size: 2rem;
+      line-height: 64px;
+    }
+
+    @media (max-width: 700px) {
+      font-size: 1.5rem;
+      line-height: 58px;
+    }
   }
 `;
 
@@ -47,16 +85,18 @@ export default function Hero() {
         <div css={heroHeading}>
           <h1>Unique Greeting Cards for Your Special Occasion</h1>
         </div>
-        <Link href="products">
-          <a>
-            <button className="button-default">Shop Cards</button>
-          </a>
-        </Link>
-        <Link href="about">
-          <a>
-            <button className="button-default-ghost">About</button>
-          </a>
-        </Link>
+        <div css={buttonContainer}>
+          <Link href="products">
+            <a>
+              <button className="button-default">Shop Cards</button>
+            </a>
+          </Link>
+          <Link href="about">
+            <a>
+              <button className="button-default-ghost">About</button>
+            </a>
+          </Link>
+        </div>
       </div>
     </div>
   );
