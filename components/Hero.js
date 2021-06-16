@@ -23,16 +23,17 @@ const heroHeadersContainer = css`
   }
 
   @media (max-width: 880px) {
-    bottom: 40%;
+    width: 40%;
+  }
+
+  @media (max-width: 540px) {
+    width: 50%;
   }
 
   button {
     @media (max-width: 950px) {
       margin-left: 5px;
       margin-right: 5px;
-    }
-
-    @media (max-width: 935px) {
     }
   }
 `;
@@ -73,6 +74,11 @@ const heroHeading = css`
     @media (max-width: 700px) {
       font-size: 1.5rem;
       line-height: 58px;
+    }
+
+    @media (max-width: 540px) {
+      font-size: 1.2rem;
+      line-height: 52px;
     }
   }
 `;
