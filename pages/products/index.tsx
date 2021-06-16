@@ -5,7 +5,7 @@ import { Dispatch, SetStateAction } from 'react';
 import Layout from '../../components/Layout';
 import { addItemByProductId } from '../../util/cookies';
 import { primaryColor, smallText } from '../../util/sharedStyles';
-import { ShoppingCart } from '../../util/types';
+import { ShoppingCartItem } from '../../util/types';
 
 // Array of products was copy pasted to database.js
 
@@ -73,7 +73,7 @@ type ProductObject = {
 };
 
 type Props = {
-  shoppingCart: ShoppingCart[];
+  shoppingCart: ShoppingCartItem[];
   setShoppingCart: Dispatch<
     SetStateAction<
       {

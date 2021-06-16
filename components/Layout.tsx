@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import { Dispatch, SetStateAction } from 'react';
-import { ShoppingCart } from '../util/types';
+import { ShoppingCartItem } from '../util/types';
 import Footer from './Footer';
 import Header from './Header';
 
@@ -12,7 +12,7 @@ const containerStyles = css`
 `;
 
 type Props = {
-  shoppingCart: ShoppingCart[];
+  shoppingCart: ShoppingCartItem[];
   setShoppingCart: Dispatch<
     SetStateAction<
       {

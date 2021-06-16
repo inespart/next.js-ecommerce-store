@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 import Link from 'next/link';
 import { Dispatch, SetStateAction } from 'react';
 import { primaryColor } from '../util/sharedStyles';
-import { ShoppingCart } from '../util/types';
+import { ShoppingCartItem } from '../util/types';
 import HeaderRightNav from './HeaderRightNav';
 
 const headerStyles = css`
@@ -80,7 +80,7 @@ const logoContainer = css`
 // `;
 
 type Props = {
-  shoppingCart: ShoppingCart[];
+  shoppingCart: ShoppingCartItem[];
   setShoppingCart: Dispatch<
     SetStateAction<
       {

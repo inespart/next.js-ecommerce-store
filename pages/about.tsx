@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 import Head from 'next/head';
 import { Dispatch, SetStateAction } from 'react';
 import Layout from '../components/Layout';
-import { ShoppingCart } from '../util/types';
+import { ShoppingCartItem } from '../util/types';
 
 const aboutPageContainer = css`
   display: flex;
@@ -12,7 +12,7 @@ const aboutPageContainer = css`
 `;
 
 type Props = {
-  shoppingCart: ShoppingCart[];
+  shoppingCart: ShoppingCartItem[];
   setShoppingCart: Dispatch<
     SetStateAction<
       {

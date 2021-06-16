@@ -4,9 +4,9 @@ describe('can add to cart, change quantity and remove from cart', () => {
     cy.visit('http://localhost:3000/products');
     // User clicks on one product
     cy.get('[data-cy="single-product-link"]').first().click();
-    // User adds product to cart
+    // Check if Add to cart button is visible
     cy.contains('Add to cart').should('be.visible');
-    //
+    // User adds product to cart
     cy.contains('Add to cart').click();
     // User increases quantity
     cy.get('[data-cy="increase-quantity-cart"]', {
