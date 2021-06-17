@@ -7,8 +7,6 @@ import { addItemByProductId, parseCookieValue } from '../../util/cookies';
 import { paddingRightLeftMobile } from '../../util/sharedStyles';
 import { largeText } from '../_app';
 
-// import { useRouter } from 'next/router';
-
 const productContainer = css`
   padding-left: 128px;
   padding-right: 128px;
@@ -32,6 +30,11 @@ const imageContainer = css`
     width: 100%;
     height: auto;
     filter: drop-shadow(2px 4px 8px #585858);
+
+    @media (max-width: 880px) {
+      width: 200px;
+      height: 160px;
+    }
   }
 `;
 
@@ -39,8 +42,6 @@ const descriptionContainer = css`
   display: flex;
   width: 50%;
   flex-direction: column;
-
-  /* justify-content: center; */
   align-items: center;
 
   div {
@@ -67,11 +68,6 @@ const quantityContainer = css`
 `;
 
 export default function SingleProduct(props) {
-  // console.log('---props---', props);
-  // console.log('context', props.quantity);
-  // const router = useRouter();
-  // const { productId } = router.query;
-
   const quantity = props.shoppingCart.find(
     (product) => product.id === props.product.id,
   )?.quantity;
@@ -86,7 +82,6 @@ export default function SingleProduct(props) {
         <title>{props.product.productName}</title>
       </Head>
       <ButtonBack />
-      {/* <h1>{props.product.productName}</h1> */}
 
       <div css={productContainer}>
         <div css={imageContainer}>
@@ -100,8 +95,6 @@ export default function SingleProduct(props) {
             data-cy="add-to-cart"
             className="button-default"
             onClick={() => {
-              // using the js-cookie library to set and get cookies
-              // use useState to update quantity on frontend
               props.setShoppingCart(addItemByProductId(props.product.id));
             }}
           >
@@ -127,16 +120,10 @@ export default function SingleProduct(props) {
 // Create connection to database
 export async function getServerSideProps(context) {
   // productId comes from the file name [productId].js
-  // console.log(context.query);
   const productId = context.query.productId;
-  // console.log('---productId---', productId);
-  // console.log('---cookies---', context.req.cookies);
 
   // changed products for getProductById - first PostgreSQL lecture
   const { getProductById } = await import('../../util/database');
-
-  // // Now we don't need to .find in JS anymore - SQL does it
-  // const product = products.find((p) => p.id === productId);
 
   const product = await getProductById(productId);
 
