@@ -10,7 +10,8 @@ describe('can proceed through checkout flow to payment page and thank you page',
     cy.get('[data-cy="cart-icon-in-header"]').click();
     // User clicks on Checkout button
     cy.get('[data-cy="checkout-button-on-shoppingcart-page"]', {
-      timeout: 15000,
+      withinSubject: null,
+      timeout: 18000,
     }).click();
     // User fills out the form on checkout page
     cy.get('[data-cy="first-name"]').type('Maria');
