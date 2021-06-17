@@ -133,6 +133,8 @@ export default function Checkout(props) {
     props.finalShoppingCartArray,
   );
 
+  console.log(setFinalShoppingCartArray);
+
   const setField = (field, value) => {
     setForm({
       ...form,

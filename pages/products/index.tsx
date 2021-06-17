@@ -11,8 +11,6 @@ import {
 } from '../../util/sharedStyles';
 import { ShoppingCartItem } from '../../util/types';
 
-// Array of products was copy pasted to database.js
-
 const containerStyle = css`
   padding: 32px 128px;
   width: 100vw;
