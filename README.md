@@ -16,6 +16,7 @@ This ecommerce project is part of a web development course. Hence, Die Schreiber
 - Jest unit tests
 - Cypress E2E tests
 - Typescript
+- Bootstrap
 
 ## Functionalities
 
@@ -35,8 +36,10 @@ This ecommerce project is part of a web development course. Hence, Die Schreiber
 - Create a new file .env
 - Copy the environment variables from .env-example into .env
 - Replace the placeholders xxxxx with your username, password and name of database
+- Install dotenv-cli with `yarn global add dotenv-cli`
+- Run `yarn install` in your command line
 - Run the migrations with `yarn migrate up`
-- Start the server by running `psql postgres`
+- Start the server by running `yarn dev`
 
 ## Deploy on Heroku
 
