@@ -4,7 +4,11 @@ import Link from 'next/link';
 import { Dispatch, SetStateAction } from 'react';
 import Layout from '../../components/Layout';
 import { addItemByProductId } from '../../util/cookies';
-import { primaryColor, smallText } from '../../util/sharedStyles';
+import {
+  paddingRightLeftMobile,
+  primaryColor,
+  smallText,
+} from '../../util/sharedStyles';
 import { ShoppingCartItem } from '../../util/types';
 
 // Array of products was copy pasted to database.js
@@ -16,6 +20,10 @@ const containerStyle = css`
   flex-flow: row wrap;
   align-content: space-between;
   justify-content: space-between;
+
+  @media (max-width: 880px) {
+    padding: 0 ${paddingRightLeftMobile};
+  }
 `;
 
 const productThumbStyle = css`

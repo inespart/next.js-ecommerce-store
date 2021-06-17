@@ -2,6 +2,7 @@ import { css } from '@emotion/react';
 import Head from 'next/head';
 import { Dispatch, SetStateAction } from 'react';
 import Layout from '../components/Layout';
+import { paddingRightLeftMobile } from '../util/sharedStyles';
 import { ShoppingCartItem } from '../util/types';
 
 const aboutPageContainer = css`
@@ -11,7 +12,7 @@ const aboutPageContainer = css`
   width: 70%;
 
   @media (max-width: 880px) {
-    padding: 0 64px;
+    padding: 0 ${paddingRightLeftMobile};
   }
 `;
 

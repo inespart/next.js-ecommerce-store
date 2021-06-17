@@ -4,6 +4,7 @@ import ButtonBack from '../../components/ButtonBack';
 import Layout from '../../components/Layout';
 import QuantityButtons from '../../components/QuantityButtons';
 import { addItemByProductId, parseCookieValue } from '../../util/cookies';
+import { paddingRightLeftMobile } from '../../util/sharedStyles';
 import { largeText } from '../_app';
 
 // import { useRouter } from 'next/router';
@@ -14,10 +15,12 @@ const productContainer = css`
   padding-top: 64px;
   padding-bottom: 96px;
   display: flex;
+  flex-direction: row;
 
-  @media (max-width: 880px) {
-    padding-left: 64px;
-    padding-right: 64px;
+  @media (max-width: 1100px) {
+    padding: 32px ${paddingRightLeftMobile};
+    flex-direction: column;
+    align-items: center;
   }
 `;
 
@@ -36,6 +39,7 @@ const descriptionContainer = css`
   display: flex;
   width: 50%;
   flex-direction: column;
+
   /* justify-content: center; */
   align-items: center;
 

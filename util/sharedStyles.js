@@ -8,3 +8,6 @@ export const primaryColorLight = '#cf980c';
 export const normalText = '16px';
 export const smallText = '0.75rem';
 export const largeText = '1.5rem';
+
+// Paddings
+export const paddingRightLeftMobile = '24px';

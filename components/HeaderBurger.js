@@ -5,7 +5,7 @@ const burgerStyle = (open) => css`
   height: 2rem;
   position: fixed;
   top: 30px;
-  right: 20px;
+  right: 24px;
   display: flex;
   justify-content: space-around;
   z-index: 1300;

@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import Link from 'next/link';
 import { FaArrowLeft } from 'react-icons/fa';
-import { primaryColor } from '../util/sharedStyles';
+import { paddingRightLeftMobile, primaryColor } from '../util/sharedStyles';
 
 const backStyle = css`
   padding-top: 64px;
@@ -11,6 +11,10 @@ const backStyle = css`
   a {
     text-decoration: none;
     color: ${primaryColor};
+  }
+
+  @media (max-width: 880px) {
+    padding: 32px ${paddingRightLeftMobile};
   }
 `;
 

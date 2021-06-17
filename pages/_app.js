@@ -5,6 +5,7 @@ import { getShoppingCartCookieValue } from '../util/cookies';
 import {
   darkGrey,
   normalText,
+  paddingRightLeftMobile,
   primaryColor,
   primaryColorLight,
 } from '../util/sharedStyles';
@@ -44,7 +45,7 @@ export default function MyApp({ Component, pageProps }) {
             font-size: 3rem;
 
             @media (max-width: 880px) {
-              margin: 12px 64px;
+              margin: 12px ${paddingRightLeftMobile};
             }
           }
           h2 {

@@ -9,12 +9,22 @@ import {
   removeItemByProductId,
   subtractItemByProductId,
 } from '../util/cookies';
-import { lightGrey, primaryColor, smallText } from '../util/sharedStyles';
+import {
+  lightGrey,
+  paddingRightLeftMobile,
+  primaryColor,
+  smallText,
+} from '../util/sharedStyles';
 import { calculateTotalQuantity } from '../util/totalQuantity';
 import { calculateTotalSum } from '../util/totalSum';
 
 const shoppingCartContainer = css`
   display: flex;
+  flex-direction: row;
+
+  @media (max-width: 1100px) {
+    flex-direction: column;
+  }
 `;
 
 const shoppingCartItemsContainer = css`
@@ -23,8 +33,12 @@ const shoppingCartItemsContainer = css`
   padding: 0 128px;
   width: 70%;
 
+  @media (max-width: 1100px) {
+    width: 100%;
+  }
+
   @media (max-width: 880px) {
-    padding: 0 64px;
+    padding: 0 ${paddingRightLeftMobile};
   }
 `;
 
@@ -36,6 +50,10 @@ const productContainer = css`
   border-radius: 8px;
   display: flex;
   align-items: flex-start;
+
+  @media (max-width: 880px) {
+    padding: 10px 0;
+  }
 
   img {
     width: 192px;
@@ -59,6 +77,24 @@ const productContainer = css`
   }
 `;
 
+const imageContainer = css`
+  img {
+    @media (max-width: 880px) {
+      width: 80%;
+    }
+  }
+  @media (max-width: 880px) {
+    width: 45%;
+  }
+`;
+
+const detailsContainer = css`
+  @media (max-width: 880px) {
+    width: 55%;
+    padding-right: 6px;
+  }
+`;
+
 const totalSumContainer = css`
   display: flex;
   flex-direction: column;
@@ -71,6 +107,18 @@ const totalSumContainer = css`
   background-color: ${lightGrey};
   border: 1px solid ${lightGrey};
   border-radius: 8px;
+
+  @media (max-width: 1100px) {
+    margin: 24px 128px;
+    width: 70%;
+    align-self: center;
+  }
+
+  @media (max-width: 880px) {
+    margin-left: ${paddingRightLeftMobile};
+    margin-right: ${paddingRightLeftMobile};
+    width: 90%;
+  }
 
   button {
     justify-content: center;
@@ -125,16 +173,6 @@ export default function ShoppingCart(props) {
 
   const quantity = calculateTotalQuantity(props.shoppingCart);
 
-  // // retrieve array of product ids that are inside shopping cart
-  // const productsByIdInShoppingCart = props.shoppingCart.map((p) => p.id);
-  // // console.log('---productsByIdInShoppingCart---', productsByIdInShoppingCart);
-
-  // // filter all products (array of objects) and return an array of objects of only those that are inside shopping cart
-  // const productsInShoppingCart = props.products.filter((p) =>
-  //   productsByIdInShoppingCart.includes(p.id),
-  // );
-  // // console.log('---productsInShoppingCart---', productsInShoppingCart);
-
   // calculate the total sum of products inside shopping cart
   const totalSum = calculateTotalSum(finalShoppingCartArray);
 
@@ -155,14 +193,14 @@ export default function ShoppingCart(props) {
               {finalShoppingCartArray.map((p) => {
                 return (
                   <div css={productContainer} key={`product-${p.id}`}>
-                    <div>
+                    <div css={imageContainer}>
                       <Link href={`products/${p.id}`}>
                         <a>
                           <img src={p.src} alt={p.productName} />
                         </a>
                       </Link>
                     </div>
-                    <div>
+                    <div css={detailsContainer}>
                       <Link href={`products/${p.id}`}>
                         <a>
                           <h4>{p.productName}</h4>
