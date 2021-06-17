@@ -245,7 +245,7 @@ export default function Checkout(props) {
               {/* First Name */}
               <Form.Group css={input}>
                 <Form.Label
-                  style={{ visibility: 'hidden' }}
+                  // style={{ visibility: 'hidden' }}
                   htmlFor="firstname"
                 >
                   First Name
@@ -264,9 +264,7 @@ export default function Checkout(props) {
               </Form.Group>
               {/* Last Name */}
               <Form.Group css={input}>
-                <Form.Label style={{ visibility: 'hidden' }} htmlFor="lastname">
-                  Last name
-                </Form.Label>
+                <Form.Label htmlFor="lastname">Last name</Form.Label>
                 <Form.Control
                   data-cy="last-name"
                   type="text"
@@ -282,9 +280,7 @@ export default function Checkout(props) {
             </div>
             {/* E-Mail */}
             <Form.Group>
-              <Form.Label style={{ visibility: 'hidden' }} htmlFor="mail">
-                Mail
-              </Form.Label>
+              <Form.Label htmlFor="mail">Mail</Form.Label>
               <Form.Control
                 data-cy="mail"
                 type="mail"
@@ -299,12 +295,7 @@ export default function Checkout(props) {
             </Form.Group>
             {/* Phone Number */}
             <Form.Group>
-              <Form.Label
-                style={{ visibility: 'hidden' }}
-                htmlFor="phonenumber"
-              >
-                Phone Number
-              </Form.Label>
+              <Form.Label htmlFor="phonenumber">Phone Number</Form.Label>
               <Form.Control
                 data-cy="phone-number"
                 type="number"
@@ -320,9 +311,7 @@ export default function Checkout(props) {
             <h2>Shipping Information</h2>
             {/* Address */}
             <Form.Group>
-              <Form.Label style={{ visibility: 'hidden' }} htmlFor="address">
-                Address
-              </Form.Label>
+              <Form.Label htmlFor="address">Address</Form.Label>
               <Form.Control
                 data-cy="address"
                 type="text"
@@ -338,9 +327,7 @@ export default function Checkout(props) {
             <div css={inputContainer}>
               {/* ZIP Code */}
               <Form.Group css={input}>
-                <Form.Label style={{ visibility: 'hidden' }} htmlFor="zipcode">
-                  Zip Code
-                </Form.Label>
+                <Form.Label htmlFor="zipcode">Zip Code</Form.Label>
                 <Form.Control
                   data-cy="zip-code"
                   type="number"
@@ -355,9 +342,7 @@ export default function Checkout(props) {
               </Form.Group>
               {/* City */}
               <Form.Group css={input}>
-                <Form.Label style={{ visibility: 'hidden' }} htmlFor="city">
-                  City
-                </Form.Label>
+                <Form.Label htmlFor="city">City</Form.Label>
                 <Form.Control
                   data-cy="city"
                   type="text"
@@ -373,9 +358,7 @@ export default function Checkout(props) {
             </div>
             {/* Country */}
             <Form.Group>
-              <Form.Label style={{ visibility: 'hidden' }} htmlFor="country">
-                Country
-              </Form.Label>
+              <Form.Label htmlFor="country">Country</Form.Label>
               <Form.Control
                 data-cy="country"
                 as="select"
@@ -395,10 +378,7 @@ export default function Checkout(props) {
             <h2>Payment Information</h2>
             {/* Credit Card Holder */}
             <Form.Group>
-              <Form.Label
-                style={{ visibility: 'hidden' }}
-                htmlFor="creditcardholder"
-              >
+              <Form.Label htmlFor="creditcardholder">
                 Credit Card Holder
               </Form.Label>
               <Form.Control
@@ -415,10 +395,7 @@ export default function Checkout(props) {
             </Form.Group>
             {/* Credit Card Information */}
             <Form.Group>
-              <Form.Label
-                style={{ visibility: 'hidden' }}
-                htmlFor="creditcardnumber"
-              >
+              <Form.Label htmlFor="creditcardnumber">
                 Credit Card Number
               </Form.Label>
               <Form.Control
@@ -436,12 +413,7 @@ export default function Checkout(props) {
             <div css={inputContainer}>
               {/* Expiry date */}
               <Form.Group css={input}>
-                <Form.Label
-                  style={{ visibility: 'hidden' }}
-                  htmlFor="expirydate"
-                >
-                  Credit Card Number
-                </Form.Label>
+                <Form.Label htmlFor="expirydate">Credit Card Number</Form.Label>
                 <Form.Control
                   data-cy="credit-card-expiry-date"
                   type="text"
@@ -458,9 +430,7 @@ export default function Checkout(props) {
               </Form.Group>
               {/* CVV */}
               <Form.Group css={input}>
-                <Form.Label style={{ visibility: 'hidden' }} htmlFor="cvv">
-                  CVV
-                </Form.Label>
+                <Form.Label htmlFor="cvv">CVV</Form.Label>
                 <Form.Control
                   data-cy="credit-card-cvv"
                   type="text"
@@ -508,23 +478,9 @@ export default function Checkout(props) {
           })}
           <br />
 
-          {/* <div css={floatContainer}>
-            <h4 className="left">Price:</h4>
-            <h4 className="right">{totalSum} €</h4>
-            <div className="clear"> </div>
-          </div>
-          <div css={floatContainer}>
-            <h4 className="left">Shipping Costs:</h4>
-            <h4 className="right">{shippingCosts} €</h4>
-            <div className="clear"> </div>
-            <div className="line" />
-          </div> */}
           <div css={floatContainer}>
             <h3 className="left">Total Sum:</h3>
-            <h3 className="right">
-              {totalSum} €
-              {/* {(parseFloat(totalSum) + shippingCosts).toFixed(2)} € */}
-            </h3>
+            <h3 className="right">{totalSum} €</h3>
             <div className="clear"> </div>
           </div>
 
