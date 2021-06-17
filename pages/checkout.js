@@ -424,7 +424,7 @@ export default function Checkout(props) {
             <div css={inputContainer}>
               {/* Expiry date */}
               <Form.Group css={input}>
-                <Form.Label htmlFor="expirydate">Credit Card Number</Form.Label>
+                <Form.Label htmlFor="expirydate">Expiry Date</Form.Label>
                 <Form.Control
                   data-cy="credit-card-expiry-date"
                   type="text"

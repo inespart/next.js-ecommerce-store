@@ -45,7 +45,6 @@ const shoppingCartItemsContainer = css`
 const productContainer = css`
   margin: 24px 0;
   padding: 10px 10px;
-  /* background-color: ${lightGrey}; */
   border: 1px solid ${lightGrey};
   border-radius: 8px;
   display: flex;
@@ -78,6 +77,8 @@ const productContainer = css`
 `;
 
 const imageContainer = css`
+  display: flex;
+
   img {
     @media (max-width: 880px) {
       width: 80%;
@@ -92,6 +93,17 @@ const detailsContainer = css`
   @media (max-width: 880px) {
     width: 55%;
     padding-right: 6px;
+  }
+`;
+
+const quantityContainer = css`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  @media (max-width: 880px) {
+    flex-direction: column;
+    align-items: flex-start;
   }
 `;
 
@@ -223,55 +235,59 @@ export default function ShoppingCart(props) {
                         </a>
                       </Link>
                       <p>EUR {(p.price / 100).toFixed(2)}</p>
-                      <p>
-                        Quantity:
+                      <div css={quantityContainer}>
+                        <div>Quantity:</div>
                         {/* Minus Button */}
-                        <button
-                          className="button-small"
-                          onClick={() => {
-                            // [{id: 1, quantity: 2}]
-                            const subtractedValue = subtractItemByProductId(
-                              p.id,
-                            );
-                            props.setShoppingCart(subtractedValue);
-                          }}
-                        >
-                          -
-                        </button>
-                        {/*  Quantity - Number of items in the cart*/}
-                        {
-                          finalShoppingCartArray.find(
-                            (product) => product.id === p.id,
-                          )?.quantity
-                        }{' '}
-                        {/* Plus Button */}
-                        <button
-                          className="button-small"
-                          onClick={() => {
-                            console.log(
-                              'props.shoppingCart',
-                              props.shoppingCart,
-                            );
-                            // this updates the cookie state
-                            props.setShoppingCart(addItemByProductId(p.id));
-                          }}
-                        >
-                          +
-                        </button>
-                        <button
-                          className="button-small-noborder"
-                          onClick={() => {
-                            props.setShoppingCart(removeItemByProductId(p.id));
-                            setFinalShoppingCartArray(
-                              finalShoppingCartArray.filter(
-                                (prod) => prod.id !== p.id,
-                              ),
-                            );
-                          }}
-                        >
-                          <RiDeleteBin6Line aria-label="Delete element from shopping cart" />
-                        </button>
-                      </p>
+                        <div>
+                          <button
+                            className="button-small"
+                            onClick={() => {
+                              // [{id: 1, quantity: 2}]
+                              const subtractedValue = subtractItemByProductId(
+                                p.id,
+                              );
+                              props.setShoppingCart(subtractedValue);
+                            }}
+                          >
+                            -
+                          </button>
+                          {/*  Quantity - Number of items in the cart*/}
+                          {
+                            finalShoppingCartArray.find(
+                              (product) => product.id === p.id,
+                            )?.quantity
+                          }{' '}
+                          {/* Plus Button */}
+                          <button
+                            className="button-small"
+                            onClick={() => {
+                              console.log(
+                                'props.shoppingCart',
+                                props.shoppingCart,
+                              );
+                              // this updates the cookie state
+                              props.setShoppingCart(addItemByProductId(p.id));
+                            }}
+                          >
+                            +
+                          </button>
+                          <button
+                            className="button-small-noborder"
+                            onClick={() => {
+                              props.setShoppingCart(
+                                removeItemByProductId(p.id),
+                              );
+                              setFinalShoppingCartArray(
+                                finalShoppingCartArray.filter(
+                                  (prod) => prod.id !== p.id,
+                                ),
+                              );
+                            }}
+                          >
+                            <RiDeleteBin6Line aria-label="Delete element from shopping cart" />
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 );
