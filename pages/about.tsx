@@ -9,11 +9,24 @@ const aboutPageContainer = css`
   display: flex;
   flex-direction: column;
   padding: 0 128px;
-  width: 70%;
+  width: 100%;
+  margin-bottom: 16px;
+  margin-top: 16px;
 
   @media (max-width: 880px) {
     padding: 0 ${paddingRightLeftMobile};
   }
+`;
+
+const heroStyle = css`
+  background-image: url('/painting-drawing.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  height: 60vh;
+  width: 100%;
+  position: relative;
 `;
 
 type Props = {
@@ -38,9 +51,24 @@ export default function About(props: Props) {
       <Head>
         <title>About</title>
       </Head>
-      <h1>About page</h1>
+      <div css={heroStyle} />
+      <h1>About</h1>
       <div css={aboutPageContainer}>
-        Writing and creating visually pleasing art is one of Ines' passions.{' '}
+        <p>
+          Die Schreiberei is a (fictional) company that sells handmade and
+          unique greeting cards made by Ines.{' '}
+        </p>
+        <p>
+          The company is fictional, because this ecommerce website was built as
+          part of a web development course and hence no actual purchases can be
+          made.
+        </p>
+        <p>
+          However, hand lettering and creating visually pleasing art is one of
+          Ines' passions.
+        </p>
+        <p>Hope you enjoy this page!</p>
+        <p>Best, Ines</p>
       </div>
     </Layout>
   );

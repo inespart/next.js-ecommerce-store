@@ -4,13 +4,23 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Layout from '../components/Layout';
-import { lightGrey, normalText, smallText } from '../util/sharedStyles';
+import {
+  lightGrey,
+  normalText,
+  paddingRightLeftMobile,
+  smallText,
+} from '../util/sharedStyles';
 import { calculateTotalQuantity } from '../util/totalQuantity';
 import { calculateTotalSum } from '../util/totalSum';
 
 const checkoutPageContainer = css`
   display: flex;
+  flex-direction: row;
   margin-bottom: 32px;
+
+  @media (max-width: 1100px) {
+    flex-direction: column;
+  }
 `;
 
 const formContainer = css`
@@ -19,17 +29,22 @@ const formContainer = css`
   padding: 0 128px;
   width: 65%;
 
+  @media (max-width: 1100px) {
+    width: 100%;
+  }
+
   @media (max-width: 880px) {
-    padding: 0 64px;
+    padding: 0 ${paddingRightLeftMobile};
   }
 
   h2 {
     margin-left: 0;
-    margin-top: 64px;
+    margin-top: 32px;
   }
 
   label {
     display: block;
+    margin-top: 24px;
   }
 
   input,
@@ -63,12 +78,15 @@ const totalSumContainer = css`
   background-color: ${lightGrey};
   border: 1px solid ${lightGrey};
   border-radius: 8px;
+
+  @media (max-width: 1100px) {
+    width: 70%;
+    align-self: center;
+  }
 `;
 
 const totalInCartStyle = css`
   font-size: ${normalText};
-  /* display: flex;
-  align-items: center; */
 
   img {
     width: 50px;
@@ -214,19 +232,13 @@ export default function Checkout(props) {
       setErrors(newErrors);
     } else {
       // No errors! Put any logic here for the form submission!
-      // alert('Thank you for your feedback!');
       router.push('/thank-you/');
     }
   };
 
   // calculate the total sum of products inside shopping cart
   const totalSum = calculateTotalSum(finalShoppingCartArray);
-
   const quantity = calculateTotalQuantity(props.shoppingCart);
-
-  const shippingCosts = totalSum >= 30 ? 0 : 10;
-  // console.log('shippingCosts', shippingCosts);
-  // console.log(typeof shippingCosts);
 
   return (
     <Layout
@@ -244,17 +256,12 @@ export default function Checkout(props) {
             <div css={inputContainer}>
               {/* First Name */}
               <Form.Group css={input}>
-                <Form.Label
-                  // style={{ visibility: 'hidden' }}
-                  htmlFor="firstname"
-                >
-                  First Name
-                </Form.Label>
+                <Form.Label htmlFor="firstname">First Name</Form.Label>
                 <Form.Control
                   data-cy="first-name"
                   type="text"
                   id="firstname"
-                  placeholder="First Name"
+                  placeholder="Maria"
                   onChange={(e) => setField('firstname', e.target.value)}
                   isInvalid={!!errors.firstname}
                 />
@@ -269,7 +276,7 @@ export default function Checkout(props) {
                   data-cy="last-name"
                   type="text"
                   id="lastname"
-                  placeholder="Last Name"
+                  placeholder="Musterfrau"
                   onChange={(e) => setField('lastname', e.target.value)}
                   isInvalid={!!errors.lastname}
                 />
@@ -285,7 +292,7 @@ export default function Checkout(props) {
                 data-cy="mail"
                 type="mail"
                 id="mail"
-                placeholder="E-Mail address"
+                placeholder="maria.musterfrau@gmail.com"
                 onChange={(e) => setField('mail', e.target.value)}
                 isInvalid={!!errors.mail}
               />
@@ -295,12 +302,14 @@ export default function Checkout(props) {
             </Form.Group>
             {/* Phone Number */}
             <Form.Group>
-              <Form.Label htmlFor="phonenumber">Phone Number</Form.Label>
+              <Form.Label htmlFor="phonenumber">
+                Phone Number (optional)
+              </Form.Label>
               <Form.Control
                 data-cy="phone-number"
                 type="number"
                 id="phonenumber"
-                placeholder="Phone Number (optional)"
+                placeholder="0676/83167423"
                 onChange={(e) => setField('phone', e.target.value)}
                 isInvalid={!!errors.phone}
               />
@@ -316,7 +325,7 @@ export default function Checkout(props) {
                 data-cy="address"
                 type="text"
                 id="address"
-                placeholder="Address"
+                placeholder="Cat street 74/7"
                 onChange={(e) => setField('address', e.target.value)}
                 isInvalid={!!errors.address}
               />
@@ -332,7 +341,7 @@ export default function Checkout(props) {
                   data-cy="zip-code"
                   type="number"
                   id="zipcode"
-                  placeholder="ZIP Code"
+                  placeholder="1010"
                   onChange={(e) => setField('zip', e.target.value)}
                   isInvalid={!!errors.zip}
                 />
@@ -347,7 +356,7 @@ export default function Checkout(props) {
                   data-cy="city"
                   type="text"
                   id="city"
-                  placeholder="City"
+                  placeholder="Vienna"
                   onChange={(e) => setField('city', e.target.value)}
                   isInvalid={!!errors.city}
                 />
@@ -385,7 +394,7 @@ export default function Checkout(props) {
                 data-cy="credit-card-holder"
                 type="text"
                 id="creditcardholder"
-                placeholder="Card Holder Name"
+                placeholder="Maria Musterfrau"
                 onChange={(e) => setField('creditcardholder', e.target.value)}
                 isInvalid={!!errors.creditcardholder}
               />
@@ -402,7 +411,7 @@ export default function Checkout(props) {
                 data-cy="credit-card-number"
                 type="number"
                 id="creditcardnumber"
-                placeholder="Card Number"
+                placeholder="1657895432567887"
                 onChange={(e) => setField('creditcardnumber', e.target.value)}
                 isInvalid={!!errors.creditcardnumber}
               />
@@ -435,7 +444,7 @@ export default function Checkout(props) {
                   data-cy="credit-card-cvv"
                   type="text"
                   id="cvv"
-                  placeholder="CVV"
+                  placeholder="777"
                   onChange={(e) => setField('creditcardcvv', e.target.value)}
                   isInvalid={!!errors.creditcardcvv}
                 />
@@ -462,8 +471,6 @@ export default function Checkout(props) {
           {finalShoppingCartArray.map((p) => {
             return (
               <div css={totalInCartStyle} key={`product-${p.id}`}>
-                {/* <img src={p.src} alt={p.productName} /> */}
-
                 <div css={floatContainer}>
                   <p className="left">
                     {p.quantity}x {p.productName}

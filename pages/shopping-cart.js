@@ -130,13 +130,29 @@ const emptyCartContainer = css`
   display: flex;
   flex-direction: column;
 
+  @media (max-width: 880px) {
+    margin-left: ${paddingRightLeftMobile};
+    margin-right: ${paddingRightLeftMobile};
+    width: 90%;
+  }
+
   h2 {
     margin-top: 64px;
+
+    @media (max-width: 880px) {
+      margin-left: 0;
+      margin-right: 0;
+    }
   }
 
   button {
     margin-left: 128px;
     margin-bottom: 128px;
+
+    @media (max-width: 880px) {
+      margin-left: 0;
+      margin-right: 0;
+    }
   }
 `;
 
@@ -282,17 +298,13 @@ export default function ShoppingCart(props) {
           </>
         ) : (
           <div css={emptyCartContainer}>
-            <div>
-              <h2>There are no items in your shopping cart.</h2>
-            </div>
+            <h2>There are no items in your shopping cart.</h2>
 
-            <div>
-              <Link href="products">
-                <a>
-                  <button className="button-default">Shop Cards</button>
-                </a>
-              </Link>
-            </div>
+            <Link href="products">
+              <a>
+                <button className="button-default">Shop Cards</button>
+              </a>
+            </Link>
           </div>
         )}
       </div>

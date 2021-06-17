@@ -21,6 +21,14 @@ const heroHeadersContainer = css`
   left: 50%;
   transform: translate(-50%, -50%);
   width: 30%;
+
+  @media (max-width: 880px) {
+    width: 40%;
+  }
+
+  @media (max-width: 680px) {
+    width: 50%;
+  }
 `;
 
 const heroHeading = css`
@@ -33,6 +41,11 @@ const heroHeading = css`
   h1 {
     margin: 0 0;
     line-height: 96px;
+
+    @media (max-width: 680px) {
+      font-size: 2rem;
+      line-height: 64px;
+    }
   }
 `;
 
