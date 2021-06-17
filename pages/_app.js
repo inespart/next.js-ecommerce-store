@@ -33,7 +33,6 @@ export default function MyApp({ Component, pageProps }) {
             font-family: 'Raleway', sans-serif;
             font-size: ${normalText};
             color: ${darkGrey};
-            /* position: relative; */
           }
           h1,
           h2,
@@ -89,7 +88,6 @@ export default function MyApp({ Component, pageProps }) {
           }
 
           .button-small {
-            /* margin-top: 25px; */
             padding: 8px 12px;
             background-color: white;
             border: 1px solid ${primaryColor};
@@ -107,13 +105,8 @@ export default function MyApp({ Component, pageProps }) {
           }
 
           .button-small-noborder {
-            /* margin-top: 25px; */
-
             background-color: white;
             border: 1px solid white;
-            /* border-radius: 4px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px; */
             cursor: pointer;
             color: ${darkGrey};
           }

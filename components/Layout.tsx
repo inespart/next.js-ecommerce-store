@@ -4,12 +4,7 @@ import { ShoppingCartItem } from '../util/types';
 import Footer from './Footer';
 import Header from './Header';
 
-const containerStyles = css`
-  /* padding: 0 150px; */
-  /* maybe delete again */
-  /* position: relative; */
-  /* min-height: 100vh; */
-`;
+const containerStyles = css``;
 
 type Props = {
   shoppingCart: ShoppingCartItem[];
@@ -25,7 +20,6 @@ type Props = {
 };
 
 export default function Layout(props: Props) {
-  // console.log('props in layout', props);
   return (
     <>
       {/* Passing props #3 */}
@@ -34,7 +28,6 @@ export default function Layout(props: Props) {
         setShoppingCart={props.setShoppingCart}
       />
       <div css={containerStyles}>{props.children}</div>
-      {/* {console.log('props inside layout component', props.children)} */}
       <Footer />
     </>
   );

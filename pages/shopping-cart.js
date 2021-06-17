@@ -336,14 +336,12 @@ export async function getServerSideProps(context) {
   // functionality to combine needed data from 2 arrays into a third array
   const rawCookie = context.req.cookies.shoppingCart;
   const cookieArray = rawCookie ? JSON.parse(rawCookie) : [];
-  // console.log('cookieArray', cookieArray);
 
   // map over the cookieArray and find the product inside products array with the same ID as in cookieArray;
   // save the result (object) in draftShoppingCartObject;
   // return a new object with the properties id, produtName,...
   const finalShoppingCartArray = cookieArray.map((p) => {
     const draftShoppingCartObject = products.find((prod) => prod.id === p.id);
-    console.log('draftShoppingCartObject', draftShoppingCartObject);
     return {
       id: draftShoppingCartObject.id,
       productName: draftShoppingCartObject.productName,
@@ -352,8 +350,6 @@ export async function getServerSideProps(context) {
       quantity: p.quantity,
     };
   });
-
-  console.log('finalShoppingCartArray', finalShoppingCartArray);
 
   // return the finalShoppingCartArray as props
   return {

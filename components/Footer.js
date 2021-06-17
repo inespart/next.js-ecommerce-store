@@ -2,10 +2,7 @@ import { css } from '@emotion/react';
 import { lightGrey, smallText } from '../util/sharedStyles';
 
 const footerContainer = css`
-  /* position: absolute; */
   width: 100%;
-  /* display: flex; */
-  /* bottom: 0; */
 `;
 
 const footerStyles = css`

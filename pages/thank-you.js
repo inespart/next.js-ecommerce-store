@@ -52,7 +52,6 @@ const heroHeading = css`
 const buttonContainer = css`
   padding-left: 24px;
   padding-right: 24px;
-  /* background-color: rgba(255, 255, 255, 0.9); */
   border-radius: 4px;
   text-align: center;
 

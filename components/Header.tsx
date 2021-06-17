@@ -28,8 +28,6 @@ const logoContainer = css`
   font-weight: 500;
   color: ${primaryColor};
   font-size: 1.2rem;
-  /* padding: 32px 128px; */
-  /* width: 100%; */
 
   a {
     text-decoration: none;

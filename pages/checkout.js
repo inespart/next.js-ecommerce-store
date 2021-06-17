@@ -129,12 +129,7 @@ export default function Checkout(props) {
   const router = useRouter();
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
-  const [finalShoppingCartArray, setFinalShoppingCartArray] = useState(
-    props.finalShoppingCartArray,
-  );
-
-  console.log(setFinalShoppingCartArray);
-
+  const [finalShoppingCartArray] = useState(props.finalShoppingCartArray);
   const setField = (field, value) => {
     setForm({
       ...form,
